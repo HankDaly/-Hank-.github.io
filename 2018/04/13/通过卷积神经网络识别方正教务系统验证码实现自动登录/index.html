@@ -79,17 +79,23 @@
 
 
 
-<meta name="description" content="记录学习的过程，关于代码、书籍、人生的感悟。">
+<meta name="description" content="通过卷积神经网络识别正方教务系统验证码 前言: 我们学校的的教务系统每次在可以查成绩的时候崩溃，需要刷个几百遍才能登录。正好最近练习爬虫，借助网上的cnn模板来破解学校的验证码，以后就可以自动查询啦。当别人还在苦恼登陆失败的时候，我早已得知挂科的真相流下了痛苦的泪水…ORZ。 什么是卷积神经网络？ 我不打算讲有关卷积神经网络的具体推算方法以及数学上面的东西，因为网络上面已经有足够好的资源，我会在下">
 <meta name="keywords" content="代码 书籍 感悟">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hank&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过卷积神经网络识别方正教务系统验证码实现自动登录">
+<meta property="og:url" content="http://yoursite.com/2018/04/13/通过卷积神经网络识别方正教务系统验证码实现自动登录/index.html">
 <meta property="og:site_name" content="Hank&#39;s Blog">
-<meta property="og:description" content="记录学习的过程，关于代码、书籍、人生的感悟。">
+<meta property="og:description" content="通过卷积神经网络识别正方教务系统验证码 前言: 我们学校的的教务系统每次在可以查成绩的时候崩溃，需要刷个几百遍才能登录。正好最近练习爬虫，借助网上的cnn模板来破解学校的验证码，以后就可以自动查询啦。当别人还在苦恼登陆失败的时候，我早已得知挂科的真相流下了痛苦的泪水…ORZ。 什么是卷积神经网络？ 我不打算讲有关卷积神经网络的具体推算方法以及数学上面的东西，因为网络上面已经有足够好的资源，我会在下">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://hankdaly.github.io/images/cnn_1.jpg">
+<meta property="og:image" content="http://hankdaly.github.io/images/cnn_2.jpg">
+<meta property="og:image" content="http://hankdaly.github.io/images/cnn_3.jpg">
+<meta property="og:image" content="http://hankdaly.github.io/images/cnn_4.jpg">
+<meta property="og:updated_time" content="2018-04-14T15:33:19.637Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hank&#39;s Blog">
-<meta name="twitter:description" content="记录学习的过程，关于代码、书籍、人生的感悟。">
+<meta name="twitter:title" content="通过卷积神经网络识别方正教务系统验证码实现自动登录">
+<meta name="twitter:description" content="通过卷积神经网络识别正方教务系统验证码 前言: 我们学校的的教务系统每次在可以查成绩的时候崩溃，需要刷个几百遍才能登录。正好最近练习爬虫，借助网上的cnn模板来破解学校的验证码，以后就可以自动查询啦。当别人还在苦恼登陆失败的时候，我早已得知挂科的真相流下了痛苦的泪水…ORZ。 什么是卷积神经网络？ 我不打算讲有关卷积神经网络的具体推算方法以及数学上面的东西，因为网络上面已经有足够好的资源，我会在下">
+<meta name="twitter:image" content="http://hankdaly.github.io/images/cnn_1.jpg">
 
 
 
@@ -119,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/13/通过卷积神经网络识别方正教务系统验证码实现自动登录/"/>
 
 
 
 
 
-  <title>Hank's Blog</title>
+  <title>通过卷积神经网络识别方正教务系统验证码实现自动登录 | Hank's Blog</title>
   
 
 
@@ -144,8 +150,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -218,9 +223,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -250,9 +255,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/13/通过卷积神经网络识别方正教务系统验证码实现自动登录/" itemprop="url">通过卷积神经网络识别方正教务系统验证码实现自动登录</a></h1>
+          <h1 class="post-title" itemprop="name headline">通过卷积神经网络识别方正教务系统验证码实现自动登录</h1>
         
 
         <div class="post-meta">
@@ -302,9 +305,7 @@
       
 
       
-        
-          
-            <p></p><h1>通过卷积神经网络识别正方教务系统验证码</h1><p></p>
+        <p></p><h1>通过卷积神经网络识别正方教务系统验证码</h1><p></p>
 <p></p><h2>前言:</h2><p></p>
 <p></p><p>我们学校的的教务系统每次在可以查成绩的时候崩溃，需要刷个几百遍才能登录。正好最近练习爬虫，借助网上的cnn模板来破解学校的验证码，以后就可以自动查询啦。当别人还在苦恼登陆失败的时候，我早已得知挂科的真相流下了痛苦的泪水…ORZ。</p><p></p>
 <p></p><h2>什么是卷积神经网络？</h2><p></p>
@@ -495,8 +496,6 @@ return marklist
 <p></p><p>在对神经网络的学习过程中，感到数学的力量真的是强大的。数学家们用非常简洁的数学模型确能形成如此复杂的系统，从而揭示规律。然而数学也是艰涩的，我在查看文档资料的时候充分认识到自己数学的薄弱。但是如果一头扎进数学的海洋，我可能就不能在短时间内解决教务系统自动登陆的问题了。在今后的实践中肯定也有这种问题出现，知识具有层级结构，在深入多少层后停止，将剩余看做黑箱是需要思考的。目前我想遵循的原则是AK47原则，简单、杀伤大：也就是说用最简单的方法达到目的。</p>
 <p></p><p>这是这个项目的仓库，可以在<a href="https://github.com/HankDaly/school" target="_blank" rel="noopener">这里</a>找到所有代码</p><p></p>
 </a>
-          
-        
       
     </div>
     
@@ -513,140 +512,28 @@ return marklist
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hank">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hank's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/12/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-12T19:38:49+08:00">
-                2018-04-12
-              </time>
+              <a href="/2018/04/12/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -656,10 +543,11 @@ return marklist
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -667,6 +555,10 @@ return marklist
 
 
           
+
+  
+
+
 
         </div>
         
@@ -687,8 +579,17 @@ return marklist
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -730,6 +631,22 @@ return marklist
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">通过卷积神经网络识别正方教务系统验证码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">前言:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.</span> <span class="nav-text">什么是卷积神经网络？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.1.</span> <span class="nav-text">如何理解神经网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.2.2.</span> <span class="nav-text">CNN</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.3.</span> <span class="nav-text">如何实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">1.4.</span> <span class="nav-text">训练代码CNN部分</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义CNN"><span class="nav-number">2.</span> <span class="nav-text">定义CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.</span> <span class="nav-text">登陆教务系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.1.</span> <span class="nav-text">难点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.1.2.</span> <span class="nav-text">登录代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#undefined"><span class="nav-number">2.2.</span> <span class="nav-text">最后</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -863,6 +780,10 @@ return marklist
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
