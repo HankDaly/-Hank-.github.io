@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="求素数个数的总结前言最近刷题的时候碰到素数问题还是蛮多的，基本上核心的问题都是围绕如何求素数的个数,下面就根据：  给出一个正整数n(n&amp;lt;=10^5),求不大于n的素数的个数。  来讨论解法。 解法一:嵌套循环第一个解法总是最朴实的，算是对下面的一个抛砖引玉。123456789101112131415161718\\c++实现#include&amp;lt;iostream&amp;gt;#include&amp;">
+<meta name="keywords" content="代码 书籍 感悟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="求素数个数的总结">
+<meta property="og:url" content="http://yoursite.com/2018/04/13/求素数个数的总结/index.html">
+<meta property="og:site_name" content="Hank&#39;s Blog">
+<meta property="og:description" content="求素数个数的总结前言最近刷题的时候碰到素数问题还是蛮多的，基本上核心的问题都是围绕如何求素数的个数,下面就根据：  给出一个正整数n(n&amp;lt;=10^5),求不大于n的素数的个数。  来讨论解法。 解法一:嵌套循环第一个解法总是最朴实的，算是对下面的一个抛砖引玉。123456789101112131415161718\\c++实现#include&amp;lt;iostream&amp;gt;#include&amp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-13T17:05:55.845Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="求素数个数的总结">
+<meta name="twitter:description" content="求素数个数的总结前言最近刷题的时候碰到素数问题还是蛮多的，基本上核心的问题都是围绕如何求素数的个数,下面就根据：  给出一个正整数n(n&amp;lt;=10^5),求不大于n的素数的个数。  来讨论解法。 解法一:嵌套循环第一个解法总是最朴实的，算是对下面的一个抛砖引玉。123456789101112131415161718\\c++实现#include&amp;lt;iostream&amp;gt;#include&amp;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/13/求素数个数的总结/"/>
+
+
+
+
+
+  <title>求素数个数的总结 | Hank's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hank's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I See Fire</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/13/求素数个数的总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hank">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/25_h.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hank's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">求素数个数的总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T18:13:06+08:00">
+                2018-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/程序/" itemprop="url" rel="index">
+                    <span itemprop="name">程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="求素数个数的总结"><a href="#求素数个数的总结" class="headerlink" title="求素数个数的总结"></a>求素数个数的总结</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近刷题的时候碰到素数问题还是蛮多的，基本上核心的问题都是围绕<span style="color:Tomato;">如何求素数的个数</span>,下面就根据：</p>
+<blockquote>
+<p>给出一个正整数n(n&lt;=10^5),求不大于n的素数的个数。</p>
+</blockquote>
+<p>来讨论解法。</p>
+<h2 id="解法一-嵌套循环"><a href="#解法一-嵌套循环" class="headerlink" title="解法一:嵌套循环"></a>解法一:嵌套循环</h2><p>第一个解法总是最朴实的，算是对下面的一个抛砖引玉。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">\\c++实现</span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cnt,sum=<span class="number">0</span>; <span class="comment">//cnt储存总数</span></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; cnt;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i&lt;=cnt;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> ok = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> z = <span class="number">2</span>;z&lt;i;z++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i%z == <span class="number">0</span>)&#123;ok = <span class="number">0</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ok == <span class="number">1</span>)&#123;sum++;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Time used = "</span> &lt;&lt; (<span class="keyword">double</span>)clock()/CLOCKS_PER_SEC &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//记时</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line"><span class="number">100000</span></span><br><span class="line">输出</span><br><span class="line"><span class="number">9592</span></span><br><span class="line">Time used = <span class="number">1.41</span></span><br></pre></td></tr></table></figure>
+<p>用时是1.41秒,下面我们看解法二。</p>
+<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><p>观察素数的生成规律不难发现，其实正整数的公因子是<span style="color:Tomato;">对称的</span>，出现必定成对出现，而且中间的值就是<span style="color:Tomato;">√n</span>,也就是说，我们不必去遍历每个值，只需要遍历小于等于√n的值即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">\\c++实现</span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cnt,sum=<span class="number">0</span>; <span class="comment">//cnt储存总数</span></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; cnt;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i&lt;=cnt;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> ok = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> z = <span class="number">2</span>;z*z&lt;=i;z++)&#123;  <span class="comment">//将z&lt;i改成了z&lt;=i</span></span><br><span class="line">            <span class="keyword">if</span>(i%z == <span class="number">0</span>)&#123;ok = <span class="number">0</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ok == <span class="number">1</span>)&#123;sum++;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Time used = "</span> &lt;&lt; (<span class="keyword">double</span>)clock()/CLOCKS_PER_SEC &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//记时</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line"><span class="number">100000</span></span><br><span class="line">输出</span><br><span class="line"><span class="number">9592</span></span><br><span class="line">Time used = <span class="number">0.019</span></span><br></pre></td></tr></table></figure>
+<p>可以看出时间从1.41直接到了0.019。那么有没有更加简便的方法呢，请看解法三。</p>
+<h2 id="解法三："><a href="#解法三：" class="headerlink" title="解法三："></a>解法三：</h2><p>从解法二的角度来看，我们已经成功的将算量缩减到了遍历√n的程度，那么还有什么规律可以找吗?</p>
+<p>我们用解法二对<span style="color:Tomato;">17</span>进行验证。分别要验证的数字是2,3,4–其中2,3为<span style="color:Tomato;">素数</span>，4为<span style="color:MediumSeaGreen;">合数</span>。</p>
+<p>我们可以发现,如果17可以被<span style="color:MediumSeaGreen;">4</span>整除，那么必定可以被<span style="color:Tomato;">2</span>整除。<br>也就是说,判断的条件可以再简单一点—-&lt;=√n &amp;&amp; ==素数。<br>我们需要一个vector储存前面已经得出的素数,然后用这些素数去验证。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//c++实现 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ve; <span class="comment">//储存素数</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cnt,sum=<span class="number">0</span>; <span class="comment">//cnt储存总数</span></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; cnt;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>;i&lt;=cnt;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> ok = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> x = ve.begin();x != ve.end() &amp;&amp; (*x)*(*x) &lt;= i;x++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i%(*x) == <span class="number">0</span>)&#123;ok = <span class="number">0</span>;<span class="keyword">break</span>;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ok == <span class="number">1</span>)&#123;ve.push_back(i);sum++;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Time used = "</span> &lt;&lt; (<span class="keyword">double</span>)clock()/CLOCKS_PER_SEC &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line"><span class="number">100000</span></span><br><span class="line">输出</span><br><span class="line"><span class="number">9592</span></span><br><span class="line">Time used = <span class="number">0.018</span></span><br></pre></td></tr></table></figure>
+<p>时间上与二没有太大区别，但是在内存使用上，还是缩减了不少。<br>好啦，那么素数算法就到这儿了?<br>实际上上述几种都可以被归为一类—除法(也就是用数去除去验证),另外还有一种筛法。见解法四。</p>
+<h2 id="解法四-筛法"><a href="#解法四-筛法" class="headerlink" title="解法四:筛法"></a>解法四:筛法</h2><p>与上述的除法不同，筛法的思想是通过已有的素数，然后将他们的倍数(合数)在范围中筛去,从而最后得到所有的素数,具体的思想大家可以看<a href="https://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95" target="_blank" rel="noopener">维基百科-埃拉托斯特尼筛法</a>，下面我用c++实现一下(其实是维基百科里的-。-,那里面有点小bug)<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 100020</span></span><br><span class="line"><span class="keyword">bool</span> flag[MAXN];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> maxn,cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">long</span> i = <span class="number">0</span>;i&lt;MAXN;i++)&#123;flag[i] = <span class="number">1</span>;&#125;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; maxn;</span><br><span class="line">	flag[<span class="number">0</span>]=<span class="number">0</span>;            <span class="comment">//0不是素数</span></span><br><span class="line">	flag[<span class="number">1</span>]=<span class="number">0</span>;            <span class="comment">//1不是素数</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">long</span> i = <span class="number">2</span>;i*i&lt;=maxn;++i)</span><br><span class="line">	&#123;  </span><br><span class="line">        <span class="comment">/*当i为素数时，i的所有倍数都不是素数*/</span></span><br><span class="line">		<span class="keyword">if</span>(flag[i])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">long</span> j = i*i;j&lt;=maxn;j+=i)</span><br><span class="line">			&#123;</span><br><span class="line">				flag[j]=<span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">long</span> i = <span class="number">0</span>;i&lt;maxn;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(flag[i])&#123;cnt++;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; cnt &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Time used = "</span> &lt;&lt; (<span class="keyword">double</span>)clock()/CLOCKS_PER_SEC &lt;&lt; <span class="built_in">endl</span>; <span class="comment">//记时</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">输入</span><br><span class="line"><span class="number">100000</span></span><br><span class="line">输出</span><br><span class="line"><span class="number">9592</span></span><br><span class="line">Time used = <span class="number">0.001</span></span><br></pre></td></tr></table></figure>
+<p>筛法一出，谁与争锋？</p>
+<p>开个玩笑哈哈，不过大家可以看到，从除法到筛法又有了进一步的突破。而这儿的筛法也不是最优的，因为大家可以看到还是会有重叠的地方，所以就单单素数就有这么多种的求解方法。我认为学无止境，而深浅则根据自身环境去定夺。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充:"></a>补充:</h2><p>再说点素数的小知识点,上面的题目是求到n为止，也就是说范围给出。那么题目中如果说求n个素数。也就是说具体到哪儿我们其实是不清楚的。<br>那么一个方法就是用可以拓展的容器vector这种，不过大家都知道，既然都讲到这儿了那么势必是要追求效率的。</p>
+<p>这时候就应该素数定理出场了，素数的分布是有规律可循的。按常识来看，素数的分布是越往后越稀少，素数定理就是对素数在某个范围内的估计。最简洁的就是<span style="color:MediumSeaGreen;">x/ln(x)</span>,假设要估计1,000,000以内有多少质数，用该公式算出是72,382个，而实际有78,498个，误差约8个百分点。该公式的特点是：估算的范围越大，偏差率越小。这样就可以通过素数定理反推范围了，因为有误差，所以一般将范围扩大15%左右即可。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>本文的后面的筛法和素数定理都是参考编程随想大哥的,有梯子的可以上去看看。开阔眼界。<br>附上连接<br><a href="https://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95" target="_blank" rel="noopener">编程随想</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/13/通过卷积神经网络识别方正教务系统验证码实现自动登录/" rel="next" title="通过卷积神经网络识别方正教务系统验证码实现自动登录">
+                <i class="fa fa-chevron-left"></i> 通过卷积神经网络识别方正教务系统验证码实现自动登录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/01/关于我对数字化建筑的思考/" rel="prev" title="关于我对数字化建筑的思考">
+                关于我对数字化建筑的思考 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjMyMC8xMjg1NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/25_h.png"
+                alt="Hank" />
+            
+              <p class="site-author-name" itemprop="name">Hank</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的过程，关于代码、书籍、人生的感悟。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=536623501&auto=0&height=66"></iframe>
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#求素数个数的总结"><span class="nav-number">1.</span> <span class="nav-text">求素数个数的总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法一-嵌套循环"><span class="nav-number">1.2.</span> <span class="nav-text">解法一:嵌套循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法二"><span class="nav-number">1.3.</span> <span class="nav-text">解法二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法三："><span class="nav-number">1.4.</span> <span class="nav-text">解法三：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法四-筛法"><span class="nav-number">1.5.</span> <span class="nav-text">解法四:筛法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#补充"><span class="nav-number">1.6.</span> <span class="nav-text">补充:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.7.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hank</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
