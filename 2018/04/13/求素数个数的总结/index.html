@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Hank&#39;s Blog">
 <meta property="og:description" content="求素数个数的总结前言最近刷题的时候碰到素数问题还是蛮多的，基本上核心的问题都是围绕如何求素数的个数,下面就根据：  给出一个正整数n(n&amp;lt;=10^5),求不大于n的素数的个数。  来讨论解法。 解法一:嵌套循环第一个解法总是最朴实的，算是对下面的一个抛砖引玉。123456789101112131415161718\\c++实现#include&amp;lt;iostream&amp;gt;#include&amp;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-13T17:05:55.845Z">
+<meta property="og:updated_time" content="2018-08-15T06:19:41.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="求素数个数的总结">
 <meta name="twitter:description" content="求素数个数的总结前言最近刷题的时候碰到素数问题还是蛮多的，基本上核心的问题都是围绕如何求素数的个数,下面就根据：  给出一个正整数n(n&amp;lt;=10^5),求不大于n的素数的个数。  来讨论解法。 解法一:嵌套循环第一个解法总是最朴实的，算是对下面的一个抛砖引玉。123456789101112131415161718\\c++实现#include&amp;lt;iostream&amp;gt;#include&amp;">
@@ -355,7 +355,7 @@
 <p>开个玩笑哈哈，不过大家可以看到，从除法到筛法又有了进一步的突破。而这儿的筛法也不是最优的，因为大家可以看到还是会有重叠的地方，所以就单单素数就有这么多种的求解方法。我认为学无止境，而深浅则根据自身环境去定夺。</p>
 <h2 id="补充"><a href="#补充" class="headerlink" title="补充:"></a>补充:</h2><p>再说点素数的小知识点,上面的题目是求到n为止，也就是说范围给出。那么题目中如果说求n个素数。也就是说具体到哪儿我们其实是不清楚的。<br>那么一个方法就是用可以拓展的容器vector这种，不过大家都知道，既然都讲到这儿了那么势必是要追求效率的。</p>
 <p>这时候就应该素数定理出场了，素数的分布是有规律可循的。按常识来看，素数的分布是越往后越稀少，素数定理就是对素数在某个范围内的估计。最简洁的就是<span style="color:MediumSeaGreen;">x/ln(x)</span>,假设要估计1,000,000以内有多少质数，用该公式算出是72,382个，而实际有78,498个，误差约8个百分点。该公式的特点是：估算的范围越大，偏差率越小。这样就可以通过素数定理反推范围了，因为有误差，所以一般将范围扩大15%左右即可。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>本文的后面的筛法和素数定理都是参考编程随想大哥的,有梯子的可以上去看看。开阔眼界。<br>附上连接<br><a href="https://zh.wikipedia.org/wiki/%E5%9F%83%E6%8B%89%E6%89%98%E6%96%AF%E7%89%B9%E5%B0%BC%E7%AD%9B%E6%B3%95" target="_blank" rel="noopener">编程随想</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>本文的后面的筛法和素数定理都是参考编程随想大哥的,有梯子的可以上去看看。开阔眼界。<br>附上连接<br><a href="https://program-think.blogspot.com/2011/12/prime-algorithm-1.html" target="_blank" rel="noopener">编程随想</a></p>
 
       
     </div>
