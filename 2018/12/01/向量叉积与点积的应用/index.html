@@ -91,7 +91,7 @@
 <meta property="og:image" content="http://hankdaly.github.io/images/cross_1.png">
 <meta property="og:image" content="http://hankdaly.github.io/images/lineintersect_1.png">
 <meta property="og:image" content="http://hankdaly.github.io/images/lineintersect_2.png">
-<meta property="og:updated_time" content="2018-12-01T14:29:48.109Z">
+<meta property="og:updated_time" content="2018-12-01T14:35:03.787Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="向量叉积与点积的应用">
 <meta name="twitter:description" content="向量叉积与点积的应用前言最近一直有用到向量的叉积与点积,所以在这里总结一下用法和心得。另外说明一下，这里的点积和叉积与数学上的还是有些区别的，因为数学上面是x,y,z。而我这里只涉及到了平面的x,y。不过方法是类似的,日后如果要做三维应该也是二维的推广。 点积 点积的概念: 一个向量在另一个向量上的投影的长度*另一个向量的长度,正负代表方向。  a(x1,y1),b(x2,y2) a,b向量的点积">
@@ -362,7 +362,7 @@
 <p><img src="http://hankdaly.github.io/images/lineintersect_1.png"></p>
 <h3 id="判断相交"><a href="#判断相交" class="headerlink" title="判断相交"></a>判断相交</h3><p>所谓的线段相交,其实就是line1的两个点在line2的两侧并且line2的两个点在line1的两侧。</p>
 <p>那么问题的关键就是如何判断两个点是否在一个线段的两侧。<br><img src="http://hankdaly.github.io/images/lineintersect_2.png"></p>
-<p>刚刚介绍的叉积就有了用武之地,看图我们可以知道line2的向量是(point_0,point_1),而点point_1到point_a的向量与点point_1到point_b的向量其实是在line2向量的两侧,而这个用叉积表示就是一个正一个负。</p>
+<p>刚刚介绍的叉积就有了用武之地,看图我们可以知道line2的向量是(point_1,point_0),而点point_1到point_a的向量与点point_1到point_b的向量其实是在line2向量的两侧,而这个用叉积表示就是一个正一个负。</p>
 <p>注意,如果是point_a变成了point_a`,point_b变成了point_b`。<br>那么同样会产生一正一负的结果,所以我们需要对line1也进行一次判定,当两次都成立时，我们认为这两个线段相交。<br><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">anwser = None</span><br><span class="line">vector_ab = Vector(point_b.x-point_a.x,point_b.y-point_a.y)</span><br><span class="line">vector_a0 = Vector(point_0.x-point_a.x,point_0.y-point_a.y)</span><br><span class="line">vector_a1 = Vector(point_1.x-point_a.x,point_1.y-point_a.y)</span><br><span class="line">cross_ab_a0 = vector_ab.cross(vector_a0)</span><br><span class="line">cross_ab_a1 = vector_ab.cross(vector_a1)</span><br><span class="line">vector_01 = Vector(point_1.x-point_0.x,point_1.y-point_0.y)</span><br><span class="line">vector_0a = Vector(point_a.x-point_0.x,point_a.y-point_0.y)</span><br><span class="line">vector_0b = Vector(point_b.x-point_0.x,point_b.y-point_0.y)</span><br><span class="line">cross_01_0a = vector_01.cross(vector_0a)</span><br><span class="line">cross_01_0b = vector_01.cross(vector_0b)</span><br><span class="line"></span><br><span class="line"><span class="comment">#当两个线段的结果都是一正一负的时候,判断相交</span></span><br><span class="line">if cross_AB_A0 * cross_AB_A1 &lt; 0 and cross_01_0A * cross_01_0B &lt; 0:</span><br><span class="line">    anwser = True</span><br><span class="line"><span class="section">else:</span></span><br><span class="line">    anwser = False</span><br></pre></td></tr></table></figure></p>
 <h3 id="找到交点"><a href="#找到交点" class="headerlink" title="找到交点"></a>找到交点</h3><p>我们现在已经证明了两个线段有了交点，那么接下来可以直接使用直线求交点的方法。我们知道直线的表达式有很多种，这里我们用到的是直线的参数方程。</p>
 <p>关于直线的参数方程,大家可以去下面的网站了解:</p>
@@ -375,7 +375,7 @@
 <p>给的点与向量如下:</p>
 <p>point1(a,b) vector1(x1,y1)</p>
 <p>point2(c,d) vector2(x2,y2)</p>
-<p>参数方程如下:<br><br>    射线一:<br>    x = a + x1 * t1<br><br>    y = b + y1 * t1<br><br>    射线二:<br><br>    x = c + x2 * t2<br><br>    y = d + y2 * t2<br><br>可以知道,当交点的时候x = x,y = y,也就是得到:<br><br>a + x1 * t1 = c + x2 * t2<br><br>b + y1 * t1 = d + y2 * t2<br><br>消去t1,最后我们可以得到关于t2的解:<br><br>t2 = (c*y1 - a*y1 - d*x1 + b*x1)/(y2*x1 - x2*y1)<br><br>大家可以发现,分母就是两个向量的叉积(数学真奇妙!),暗示当两向量平行或者共线的时候无法计算。<br><br>最后将t2代入到直线二的方程中,交点的(x,y)就都得到了。</p>
+<p>参数方程如下:<br><br>    直线一:<br>    x = a + x1 * t1<br><br>    y = b + y1 * t1<br><br>    直线二:<br><br>    x = c + x2 * t2<br><br>    y = d + y2 * t2<br><br>可以知道,当交点的时候x = x,y = y,也就是得到:<br><br>a + x1 * t1 = c + x2 * t2<br><br>b + y1 * t1 = d + y2 * t2<br><br>消去t1,最后我们可以得到关于t2的解:<br><br>t2 = (c*y1 - a*y1 - d*x1 + b*x1)/(y2*x1 - x2*y1)<br><br>大家可以发现,分母就是两个向量的叉积(数学真奇妙!),暗示当两向量平行或者共线的时候无法计算。<br><br>最后将t2代入到直线二的方程中,交点的(x,y)就都得到了。</p>
 <h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>向量的学习入门(线代)我推荐b站的这位up主,他讲述的是向量与几何之间的关系。生动形象。</p>
 <p><a href="https://space.bilibili.com/88461692" target="_blank" rel="noopener">3Blue1Brown</a></p>
 <p>当然向量叉积点积还能干很多啦,下次介绍如何判断阴阳角。</p>
