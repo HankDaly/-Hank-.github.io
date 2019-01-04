@@ -88,10 +88,10 @@
 <meta property="og:description" content="沿边排列建筑要求首先明确输入和输出。  我们有图一所示的边缘线,以及图二所示的四个矩形.数据都已经在图中给出.我们要将图二的矩形在图一的边缘线上排列。 最终输入如图三所示，注意二点： 1. a处属于阳角,所以可以延伸出去。 2. b处最后一个矩形之所以这么排列，是因为前面的矩形导致的，也就是按照顺序排列。 解决方法对于上面的问题,我采用域线的方法去解决。 我认为自己的方法只是解决这个问题的方法之一">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://hankdaly.github.io/images/edge/edge_1.png">
-<meta property="og:image" content="http://hankdaly.github.io/images/edge_2.png">
+<meta property="og:image" content="http://hankdaly.github.io/images/edge/edge_2.png">
 <meta property="og:image" content="http://hankdaly.github.io/images/edge/edge_3.png">
 <meta property="og:image" content="http://hankdaly.github.io/images/edge/edge_4.png">
-<meta property="og:updated_time" content="2019-01-04T03:24:12.023Z">
+<meta property="og:updated_time" content="2019-01-04T03:30:57.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="沿边排列建筑">
 <meta name="twitter:description" content="沿边排列建筑要求首先明确输入和输出。  我们有图一所示的边缘线,以及图二所示的四个矩形.数据都已经在图中给出.我们要将图二的矩形在图一的边缘线上排列。 最终输入如图三所示，注意二点： 1. a处属于阳角,所以可以延伸出去。 2. b处最后一个矩形之所以这么排列，是因为前面的矩形导致的，也就是按照顺序排列。 解决方法对于上面的问题,我采用域线的方法去解决。 我认为自己的方法只是解决这个问题的方法之一">
@@ -345,7 +345,7 @@
 <p>2. b处最后一个矩形之所以这么排列，是因为前面的矩形导致的，也就是按照顺序排列。</p>
 <h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>对于上面的问题,我采用域线的方法去解决。</p>
 <p>我认为自己的方法只是解决这个问题的方法之一，肯定有更高效，更便捷的方法等待发现，希望我的方法能给大家一点灵感。</p>
-<p><img src="http://hankdaly.github.io/images/edge_2.png"></p>
+<p><img src="http://hankdaly.github.io/images/edge/edge_2.png"></p>
 <p>在我们已经排完a，b段后，我们现在需要排c段,那么在c段的上空可以看到,存在两条红色的域线,以及一条蓝色的中空区域(代表可以排任意高度)。得到这些域线后,就可以遍历每个域线，根据每条域线的性质来安放矩形</p>
 <p>这就是我的大致思路。</p>
 <h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><p>对于上述的方法需要构造几个类,分别是矩形(Rectangle),道路(Path_list),单条道路(Path),域线(Segment),域点(Areapoint).矩形与域点又继承了(Polyline),(Point2D)类.</p>
