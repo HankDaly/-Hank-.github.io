@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="沿边排列建筑要求首先明确输入和输出。  我们有图一所示的边缘线,以及图二所示的四个矩形.数据都已经在图中给出.我们要将图二的矩形在图一的边缘线上排列。 最终输入如图三所示，注意二点： 1. a处属于阳角,所以可以延伸出去。 2. b处最后一个矩形之所以这么排列，是因为前面的矩形导致的，也就是按照顺序排列。 解决方法对于上面的问题,我采用域线的方法去解决。 我认为自己的方法只是解决这个问题的方法之一">
+<meta name="keywords" content="代码 书籍 感悟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="沿边排列建筑">
+<meta property="og:url" content="http://yoursite.com/2018/12/31/沿边排列建筑/index.html">
+<meta property="og:site_name" content="Hank&#39;s Blog">
+<meta property="og:description" content="沿边排列建筑要求首先明确输入和输出。  我们有图一所示的边缘线,以及图二所示的四个矩形.数据都已经在图中给出.我们要将图二的矩形在图一的边缘线上排列。 最终输入如图三所示，注意二点： 1. a处属于阳角,所以可以延伸出去。 2. b处最后一个矩形之所以这么排列，是因为前面的矩形导致的，也就是按照顺序排列。 解决方法对于上面的问题,我采用域线的方法去解决。 我认为自己的方法只是解决这个问题的方法之一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://hankdaly.github.io/images/edge/edge_1.png">
+<meta property="og:image" content="http://hankdaly.github.io/images/edge_2.png">
+<meta property="og:image" content="http://hankdaly.github.io/images/edge/edge_3.png">
+<meta property="og:image" content="http://hankdaly.github.io/images/edge/edge_4.png">
+<meta property="og:updated_time" content="2019-01-04T03:24:12.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="沿边排列建筑">
+<meta name="twitter:description" content="沿边排列建筑要求首先明确输入和输出。  我们有图一所示的边缘线,以及图二所示的四个矩形.数据都已经在图中给出.我们要将图二的矩形在图一的边缘线上排列。 最终输入如图三所示，注意二点： 1. a处属于阳角,所以可以延伸出去。 2. b处最后一个矩形之所以这么排列，是因为前面的矩形导致的，也就是按照顺序排列。 解决方法对于上面的问题,我采用域线的方法去解决。 我认为自己的方法只是解决这个问题的方法之一">
+<meta name="twitter:image" content="http://hankdaly.github.io/images/edge/edge_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/31/沿边排列建筑/"/>
+
+
+
+
+
+  <title>沿边排列建筑 | Hank's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hank's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I See Fire</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/31/沿边排列建筑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hank">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/25_h.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hank's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">沿边排列建筑</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-31T21:42:06+08:00">
+                2018-12-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/建筑/" itemprop="url" rel="index">
+                    <span itemprop="name">建筑</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="沿边排列建筑"><a href="#沿边排列建筑" class="headerlink" title="沿边排列建筑"></a>沿边排列建筑</h1><h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2><p>首先明确输入和输出。</p>
+<p><img src="http://hankdaly.github.io/images/edge/edge_1.png"></p>
+<p>我们有图一所示的边缘线,以及图二所示的四个矩形.数据都已经在图中给出.我们要将图二的矩形在图一的边缘线上排列。</p>
+<p>最终输入如图三所示，注意二点：</p>
+<p>1. a处属于阳角,所以可以延伸出去。</p>
+<p>2. b处最后一个矩形之所以这么排列，是因为前面的矩形导致的，也就是按照顺序排列。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>对于上面的问题,我采用域线的方法去解决。</p>
+<p>我认为自己的方法只是解决这个问题的方法之一，肯定有更高效，更便捷的方法等待发现，希望我的方法能给大家一点灵感。</p>
+<p><img src="http://hankdaly.github.io/images/edge_2.png"></p>
+<p>在我们已经排完a，b段后，我们现在需要排c段,那么在c段的上空可以看到,存在两条红色的域线,以及一条蓝色的中空区域(代表可以排任意高度)。得到这些域线后,就可以遍历每个域线，根据每条域线的性质来安放矩形</p>
+<p>这就是我的大致思路。</p>
+<h2 id="构造"><a href="#构造" class="headerlink" title="构造"></a>构造</h2><p>对于上述的方法需要构造几个类,分别是矩形(Rectangle),道路(Path_list),单条道路(Path),域线(Segment),域点(Areapoint).矩形与域点又继承了(Polyline),(Point2D)类.</p>
+<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码"></a>伪代码</h2><p>介绍一下具体实现的流程<br>可以思考一下一些具体的方法应该放在哪个类里面实现</p>
+<h3 id="获得域线"><a href="#获得域线" class="headerlink" title="获得域线"></a>获得域线</h3><p>我们回到c段,当我们想获得c段的域线,首先得用c段之外的所有节点对c段做投影。</p>
+<p><img src="http://hankdaly.github.io/images/edge/edge_3.png"><br>可以看到，一共9个点投影到了c段所在的直线上。</p>
+<p>接下来对点进行一个筛选,选择5，6，7，8这几个在c段范围内的点。</p>
+<p>然后反向将这些点与除了c段外的所有线段求垂点,并且选出最低的垂点。</p>
+<p><img src="http://hankdaly.github.io/images/edge/edge_4.png"></p>
+<p>我们选出了a，b，c，d点连线。再加上c段的起始点和末尾点。在这里大家和之前主动画出来的域线比较一下会发现，b，c点间缺少一条垂直线作为过渡。</p>
+<p>也就是说，b点其实是一个特殊的点,如何判断出b点这些特殊的点我试了一些方法，但是都没有成功…(我认为是能成功判断的，希望大家能找到方法TAT)。于是我采取了一个折中的方法，我会在每个点之间再插入若干个点，比如6，7之间再插入10个点，那么就可以得到近似于之前的域线了。由于这种方法可以用点的数量控制精度,到最后可以完美模拟,所以我认为可以采取这个方法。</p>
+<p>还有几个应该注意的点</p>
+<blockquote>
+<p>1/图中案例c段末尾是阴角，所以最后添加c段末端点并且把范围外的点都排除了。如果c段末尾是阳角(意味着矩形可以超出边界)，超出c段末尾的点也要被加入计算中。</p>
+</blockquote>
+<blockquote>
+<p>2/图中c-d的域线其实是空域,所以需要一开始知道空域的范围，在算出所有域线后减去在空域中的域线</p>
+</blockquote>
+<blockquote>
+<p>3/关于计算上的边界条件，比如遇到平行，以及除法后精确的问题</p>
+</blockquote>
+<p>求域线的流程基本如下<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#求域线的伪代码</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> 阴角:</span><br><span class="line">    得到除了当前段外其他所有的点</span><br><span class="line">    根据角的性质排除掉不符合的点</span><br><span class="line">    求空域的区间</span><br><span class="line">    得到点在当前段上的投影点</span><br><span class="line">    在投影点间插入精度点(按数量还是距离都随意)</span><br><span class="line">    精度点反向投影到其他线段上,得到域点</span><br><span class="line">    连接域点得到域线</span><br><span class="line">    根据空域的区间减去空域范围的域线</span><br><span class="line">    返回域线</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">...</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="排列矩形"><a href="#排列矩形" class="headerlink" title="排列矩形"></a>排列矩形</h3><p>得到域线后就该放入矩形了,可以想象一下，我们现在要往c段放入矩形了，而c段的上方是一条条我们已经算出来的域线。而域线的种类无非三种，上升/下降/无。这里和c段平行的域线可以被看做是上升或下降的特殊情况一起讨论。下面是排列矩形的伪代码。</p>
+<blockquote>
+<p>注意域线不存在的情况</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">if</span> 阴角:</span><br><span class="line">    超出c段长度结束(<span class="keyword">return</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    超出c段长度加上矩形长度结束(<span class="keyword">return</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> 域线存在:</span><br><span class="line">    <span class="keyword">if</span> 域线是空值:</span><br><span class="line">        看这个矩形长度范围内头上有多少域线</span><br><span class="line">        判断这些域线是否与矩形相交</span><br><span class="line">        <span class="keyword">if</span> 不相交:</span><br><span class="line">            可以放下，添加矩形</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            移到下一个域线上</span><br><span class="line">    elif 域线是上升的:</span><br><span class="line">        <span class="keyword">if</span> 域线最高点高于矩形宽:</span><br><span class="line">            找到矩形切域线的位置</span><br><span class="line">            看矩形长度范围内头上有多少域线</span><br><span class="line">            判断这些域线是否与矩形相交</span><br><span class="line">            <span class="keyword">if</span> 不相交:</span><br><span class="line">                添加矩形</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                移到下一个域线上</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            移到下一个域线上</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        同空值</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    直接添加矩形</span><br></pre></td></tr></table></figure>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>下面我用代码实现一下，因为细节太多(包括空域其实还有种类，如何处理误差，&gt;=之间的判断都是要反复琢磨的)，所以前面主要讲的还是逻辑,具体实现就直接上代码了。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br><span class="line">700</span><br><span class="line">701</span><br><span class="line">702</span><br><span class="line">703</span><br><span class="line">704</span><br><span class="line">705</span><br><span class="line">706</span><br><span class="line">707</span><br><span class="line">708</span><br><span class="line">709</span><br><span class="line">710</span><br><span class="line">711</span><br><span class="line">712</span><br><span class="line">713</span><br><span class="line">714</span><br><span class="line">715</span><br><span class="line">716</span><br><span class="line">717</span><br><span class="line">718</span><br><span class="line">719</span><br><span class="line">720</span><br><span class="line">721</span><br><span class="line">722</span><br><span class="line">723</span><br><span class="line">724</span><br><span class="line">725</span><br><span class="line">726</span><br><span class="line">727</span><br><span class="line">728</span><br><span class="line">729</span><br><span class="line">730</span><br><span class="line">731</span><br><span class="line">732</span><br><span class="line">733</span><br><span class="line">734</span><br><span class="line">735</span><br><span class="line">736</span><br><span class="line">737</span><br><span class="line">738</span><br><span class="line">739</span><br><span class="line">740</span><br><span class="line">741</span><br><span class="line">742</span><br><span class="line">743</span><br><span class="line">744</span><br><span class="line">745</span><br><span class="line">746</span><br><span class="line">747</span><br><span class="line">748</span><br><span class="line">749</span><br><span class="line">750</span><br><span class="line">751</span><br><span class="line">752</span><br><span class="line">753</span><br><span class="line">754</span><br><span class="line">755</span><br><span class="line">756</span><br><span class="line">757</span><br><span class="line">758</span><br><span class="line">759</span><br><span class="line">760</span><br><span class="line">761</span><br><span class="line">762</span><br><span class="line">763</span><br><span class="line">764</span><br><span class="line">765</span><br><span class="line">766</span><br><span class="line">767</span><br><span class="line">768</span><br><span class="line">769</span><br><span class="line">770</span><br><span class="line">771</span><br><span class="line">772</span><br><span class="line">773</span><br><span class="line">774</span><br><span class="line">775</span><br><span class="line">776</span><br><span class="line">777</span><br><span class="line">778</span><br><span class="line">779</span><br><span class="line">780</span><br><span class="line">781</span><br><span class="line">782</span><br><span class="line">783</span><br><span class="line">784</span><br><span class="line">785</span><br><span class="line">786</span><br><span class="line">787</span><br><span class="line">788</span><br><span class="line">789</span><br><span class="line">790</span><br><span class="line">791</span><br><span class="line">792</span><br><span class="line">793</span><br><span class="line">794</span><br><span class="line">795</span><br><span class="line">796</span><br><span class="line">797</span><br><span class="line">798</span><br><span class="line">799</span><br><span class="line">800</span><br><span class="line">801</span><br><span class="line">802</span><br><span class="line">803</span><br><span class="line">804</span><br><span class="line">805</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#因为域点和矩形分别继承了Point2D和Polyline,所以我先描述这两类</span></span><br><span class="line"><span class="comment">#Point2D</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point2D</span>(<span class="title">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>,x,y)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.x = x</span><br><span class="line">        <span class="keyword">self</span>.y = y</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">addVec</span><span class="params">(<span class="keyword">self</span>, vec)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">return</span> Point2D([<span class="keyword">self</span>.x + vec.x, <span class="keyword">self</span>.y + vec.y])</span><br><span class="line">    @staticmethod</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isintersect</span><span class="params">(pointA,pointB,point<span class="number">0</span>,point1)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment">#判断两个线段是否有交点</span></span><br><span class="line">        dif = <span class="number">0</span>.<span class="number">05</span> <span class="comment">#误差</span></span><br><span class="line">        vector_AB = Vector(pointB.x-pointA.x,pointB.y-pointA.y)</span><br><span class="line">        vector_A<span class="number">0</span> = Vector(point<span class="number">0</span>.x-pointA.x,point<span class="number">0</span>.y-pointA.y)</span><br><span class="line">        vector_A1 = Vector(point1.x-pointA.x,point1.y-pointA.y)</span><br><span class="line">        cross_AB_A<span class="number">0</span> = vector_AB.cross(vector_A<span class="number">0</span>)</span><br><span class="line">        cross_AB_A1 = vector_AB.cross(vector_A1)</span><br><span class="line">        vector_01 = Vector(point1.x-point<span class="number">0</span>.x,point1.y-point<span class="number">0</span>.y)</span><br><span class="line">        vector_0A = Vector(pointA.x-point<span class="number">0</span>.x,pointA.y-point<span class="number">0</span>.y)</span><br><span class="line">        vector_0B = Vector(pointB.x-point<span class="number">0</span>.x,pointB.y-point<span class="number">0</span>.y)</span><br><span class="line">        cross_01_0A = vector_01.cross(vector_0A)</span><br><span class="line">        cross_01_0B = vector_01.cross(vector_0B)</span><br><span class="line">        <span class="keyword">if</span> cross_AB_A<span class="number">0</span> * cross_AB_A1 &lt; <span class="number">0</span>-dif <span class="keyword">and</span> cross_01_0A * cross_01_0B &lt; <span class="number">0</span>-<span class="symbol">dif:</span></span><br><span class="line">            <span class="keyword">return</span> True</span><br><span class="line">        <span class="symbol">else:</span></span><br><span class="line">            <span class="keyword">return</span> False</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">twopointlength</span><span class="params">(<span class="keyword">self</span>,point)</span></span><span class="symbol">:</span></span><br><span class="line">        vector = Vector(point.x-<span class="keyword">self</span>.x,point.y-<span class="keyword">self</span>.y)</span><br><span class="line">        <span class="keyword">return</span> vector.getLength()</span><br><span class="line"></span><br><span class="line"><span class="comment">#Polyline</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Polyline</span>(<span class="title">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, start_pt, vec_lst)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.start_pt = start_pt</span><br><span class="line">        <span class="keyword">self</span>.vec_lst = vec_lst</span><br><span class="line">        <span class="keyword">self</span>.vec_length_lst = <span class="keyword">self</span>.getVectorLengthList()</span><br><span class="line">        <span class="keyword">self</span>.pt_lst = <span class="keyword">self</span>.getPtListFromVectors()</span><br><span class="line">        <span class="keyword">self</span>.length = <span class="keyword">self</span>.getLength()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getVectorLengthList</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 根据所有向量将长度写入矩形实例属性</span></span><br><span class="line">        num = len(<span class="keyword">self</span>.vec_lst)</span><br><span class="line">        length_lst = [<span class="number">0</span>.<span class="number">0</span>]*num</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(num)<span class="symbol">:</span></span><br><span class="line">            length_lst[i] = <span class="keyword">self</span>.vec_lst[i].length</span><br><span class="line">        <span class="keyword">return</span> length_lst</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getLength</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 返回polyline的每段向量长度和</span></span><br><span class="line">        length = <span class="number">0</span>.<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> vec <span class="keyword">in</span> <span class="keyword">self</span>.<span class="symbol">vec_lst:</span></span><br><span class="line">            length += vec.length</span><br><span class="line">        <span class="keyword">return</span> length</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getPtListFromVectors</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 根据初始点和所有向量得到所有点, 将角点记录成向量位点</span></span><br><span class="line">        pt_lst = []</span><br><span class="line">        pt_lst.append(<span class="keyword">self</span>.start_pt)</span><br><span class="line">        temp_pt = <span class="keyword">self</span>.start_pt</span><br><span class="line">        <span class="keyword">for</span> vec <span class="keyword">in</span> <span class="keyword">self</span>.vec_lst[<span class="symbol">:-</span><span class="number">1</span>]<span class="symbol">:</span></span><br><span class="line">            temp_pt = temp_pt.addVec(vec)</span><br><span class="line">            pt_lst.append(temp_pt)</span><br><span class="line">        <span class="keyword">return</span> pt_lst</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getVectorListFromPts</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 根据顺序点得到向量</span></span><br><span class="line">        vec_lst = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(<span class="keyword">self</span>.pt_lst)-<span class="number">1</span>)<span class="symbol">:</span></span><br><span class="line">            vec = Vector(<span class="keyword">self</span>.pt_lst[i], <span class="keyword">self</span>.pt_lst[i+<span class="number">1</span>])</span><br><span class="line">            vec_lst.append(vec)</span><br><span class="line">        vec = Vector(<span class="keyword">self</span>.pt_lst[-<span class="number">1</span>], <span class="keyword">self</span>.pt_lst[<span class="number">0</span>])</span><br><span class="line">        vec_lst.append(vec)</span><br><span class="line">        <span class="keyword">return</span> vec_lst</span><br><span class="line"><span class="comment">#Vector</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vector</span>(<span class="title">object</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>, vec_x, vec_y, length = None)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.x, <span class="keyword">self</span>.y = vec_x, vec_y</span><br><span class="line">        <span class="keyword">self</span>.length = <span class="keyword">self</span>.getLength() <span class="keyword">if</span> (length is None) <span class="keyword">else</span> length</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">unit</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 单位化一个向量</span></span><br><span class="line">        <span class="keyword">return</span> Vector(<span class="keyword">self</span>.x/<span class="keyword">self</span>.length, <span class="keyword">self</span>.y/<span class="keyword">self</span>.length, length = <span class="number">1.0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">amplify</span><span class="params">(<span class="keyword">self</span>, factor)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 向量扩大倍数</span></span><br><span class="line">        <span class="keyword">return</span> Vector(<span class="keyword">self</span>.x * factor, <span class="keyword">self</span>.y * factor, length = <span class="keyword">self</span>.length * factor)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dot</span><span class="params">(<span class="keyword">self</span>, vec)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 向量的点积</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.x*vec.x+<span class="keyword">self</span>.y*vec.y</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span><span class="params">(<span class="keyword">self</span>,vec)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment">#向量的叉积</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.x*vec.y-<span class="keyword">self</span>.y*vec.x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverse</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 取反向量</span></span><br><span class="line">        <span class="keyword">return</span> Vector(-<span class="keyword">self</span>.x, -<span class="keyword">self</span>.y, length = <span class="keyword">self</span>.length)  <span class="comment"># 传值, 不会重新计算长度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rotateVertical</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 逆时针旋转90度</span></span><br><span class="line">        <span class="keyword">return</span> Vector(-<span class="keyword">self</span>.y, <span class="keyword">self</span>.x, length = <span class="keyword">self</span>.length)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getLength</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 向量的长度</span></span><br><span class="line">        <span class="keyword">return</span> math.sqrt(<span class="keyword">self</span>.x * <span class="keyword">self</span>.x + <span class="keyword">self</span>.y * <span class="keyword">self</span>.y)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">judgeVectorParallel</span><span class="params">(<span class="keyword">self</span>, vec)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment"># 判断实例向量和vec之间是否平行</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">self</span>.cross(vec) == <span class="number">0</span><span class="symbol">:</span></span><br><span class="line">            <span class="keyword">return</span> True</span><br><span class="line"><span class="comment">#Rectangle</span></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">Rectangle</span>(<span class="title">Polyline</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ifpointin</span><span class="params">(<span class="keyword">self</span>,point)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment">#判断点是否在矩形内</span></span><br><span class="line">        <span class="comment">#误差</span></span><br><span class="line">        dif = <span class="number">0</span>.<span class="number">05</span></span><br><span class="line">        point_origin = <span class="keyword">self</span>.pt_lst[<span class="number">0</span>]</span><br><span class="line">        point_1 = <span class="keyword">self</span>.pt_lst[<span class="number">1</span>]</span><br><span class="line">        point_2 = <span class="keyword">self</span>.pt_lst[<span class="number">3</span>]</span><br><span class="line">        vector_1 = Vector(point_1.x-point_origin.x,point_1.y-point_origin.y)</span><br><span class="line">        vector_2 = Vector(point_2.x-point_origin.x,point_2.y-point_origin.y)</span><br><span class="line">        vector = Vector(point.x-point_origin.x,point.y-point_origin.y)</span><br><span class="line">        dot_1 = vector.dot(vector_1)</span><br><span class="line">        dot_2 = vector.dot(vector_2)</span><br><span class="line">        <span class="keyword">if</span> dot_1 &lt; vector_1.getLength()*vector_1.getLength()-dif <span class="keyword">and</span> dot_1 &gt; <span class="number">0</span>+dif <span class="keyword">and</span> dot_2 &lt; vector_2.getLength()*vector_2.getLength()-dif <span class="keyword">and</span> dot_2 &gt; <span class="number">0</span>+<span class="symbol">dif:</span></span><br><span class="line">            <span class="keyword">return</span> True</span><br><span class="line">        <span class="symbol">else:</span></span><br><span class="line">            <span class="keyword">return</span> False</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">ifintersectline</span><span class="params">(<span class="keyword">self</span>,point<span class="number">0</span>,point1)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment">#判断矩形是否与线段碰撞</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(<span class="keyword">self</span>.pt_lst)-<span class="number">1</span>)<span class="symbol">:</span></span><br><span class="line">            point_re_A = <span class="keyword">self</span>.pt_lst[i]</span><br><span class="line">            point_re_B = <span class="keyword">self</span>.pt_lst[i+<span class="number">1</span>]</span><br><span class="line">            flag = Point2D.isintersect(point_re_A,point_re_B,point<span class="number">0</span>,point1)</span><br><span class="line">            <span class="comment">#输出True代表有碰撞</span></span><br><span class="line">            <span class="keyword">if</span> flag == <span class="symbol">True:</span></span><br><span class="line">                <span class="keyword">return</span> True</span><br><span class="line">        <span class="keyword">return</span> False    </span><br><span class="line"><span class="comment">#Areapoint</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Areapoint</span>(<span class="title">Point2D</span>):</span></span><br><span class="line">    <span class="string">'构造path上的域点,想要的属性有length和height'</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>,point,path)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.x = point.x</span><br><span class="line">        <span class="keyword">self</span>.y = point.y</span><br><span class="line">        <span class="keyword">self</span>.hight, <span class="keyword">self</span>.length = path.Getvertical(path.start_pt,path.vector,point)</span><br><span class="line">        <span class="keyword">self</span>.block = False</span><br><span class="line"><span class="comment">#Path</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Path</span>():</span></span><br><span class="line">    <span class="string">'构造沿边排房子的单条路'</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>,start_x,start_y,end_x,end_y)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.start_pt = Point2D([start_x,start_y])</span><br><span class="line">        <span class="keyword">self</span>.end_pt = Point2D([end_x,end_y])</span><br><span class="line">        <span class="keyword">self</span>.length = <span class="keyword">self</span>.start_pt.twopointlength(<span class="keyword">self</span>.end_pt)</span><br><span class="line">        <span class="keyword">self</span>.vector = Vector(end_x-start_x,end_y-start_y).unit()</span><br><span class="line">        <span class="keyword">self</span>.rectangle_list = []</span><br><span class="line">        <span class="keyword">self</span>.pathpoint_list = []</span><br><span class="line">        <span class="keyword">self</span>.getreclength = <span class="number">0</span></span><br><span class="line">        <span class="keyword">self</span>.arealist = []</span><br><span class="line">        <span class="keyword">self</span>.segmentlist = [] <span class="comment">#用segment管理域点</span></span><br><span class="line">        <span class="keyword">self</span>.block_length = [-<span class="number">1</span>,-<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">self</span>.angleclass = -<span class="number">1</span> <span class="comment">#path的阴阳角，默认为阴角</span></span><br><span class="line">    <span class="comment">#切割域点</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Cutareapoint</span><span class="params">(<span class="keyword">self</span>,areapoint1,areapoint2,block_length)</span></span><span class="symbol">:</span></span><br><span class="line">        vector = Vector(areapoint2.x-areapoint1.x,areapoint2.y-areapoint1.y)</span><br><span class="line">        area_hight = areapoint2.hight-areapoint1.hight</span><br><span class="line">        area_length = areapoint2.length-areapoint1.length</span><br><span class="line">        length = block_length - areapoint1.length</span><br><span class="line">        k = length/area_length</span><br><span class="line">        hight = areapoint1.hight + area_hight*k</span><br><span class="line">        vector = vector.amplify(k)</span><br><span class="line">        temp_point = areapoint1.addVec(vector)</span><br><span class="line">        anwser = copy.copy(areapoint1)</span><br><span class="line">        anwser.x = temp_point.x</span><br><span class="line">        anwser.y = temp_point.y</span><br><span class="line">        anwser.hight = hight</span><br><span class="line">        anwser.length = block_length</span><br><span class="line">        <span class="keyword">return</span> anwser</span><br><span class="line">    <span class="comment">#根据域点得到域线</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getsegmentlist</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="string">''</span><span class="string">'策略是用空域的值分割域线'</span><span class="string">''</span></span><br><span class="line">        temp_list = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(<span class="keyword">self</span>.arealist)-<span class="number">1</span>)<span class="symbol">:</span></span><br><span class="line">            point_<span class="number">0</span> = <span class="keyword">self</span>.arealist[i]</span><br><span class="line">            point_1 = <span class="keyword">self</span>.arealist[i+<span class="number">1</span>]</span><br><span class="line">            segment_list = []</span><br><span class="line">            <span class="keyword">if</span> point_<span class="number">0</span>.length &lt; <span class="keyword">self</span>.block_length[<span class="number">0</span>]<span class="symbol">:</span></span><br><span class="line">                <span class="comment">#当segment的第一个点在区间的左侧</span></span><br><span class="line">                <span class="keyword">if</span> point_1.length &lt;= <span class="keyword">self</span>.block_length[<span class="number">0</span>]<span class="symbol">:</span></span><br><span class="line">                    segment_list.append(Segment(point_<span class="number">0</span>,point_1))</span><br><span class="line">                elif point_1.length &lt;= <span class="keyword">self</span>.block_length[<span class="number">1</span>]<span class="symbol">:</span></span><br><span class="line">                    segment_list.append(Segment(point_<span class="number">0</span>,<span class="keyword">self</span>.Cutareapoint(point_<span class="number">0</span>,point_1,<span class="keyword">self</span>.block_length[<span class="number">0</span>])))</span><br><span class="line">                <span class="symbol">else:</span></span><br><span class="line">                    segment_list.append(Segment(point_<span class="number">0</span>,<span class="keyword">self</span>.Cutareapoint(point_<span class="number">0</span>,point_1,<span class="keyword">self</span>.block_length[<span class="number">0</span>])))</span><br><span class="line">                    segment_list.append(Segment(<span class="keyword">self</span>.Cutareapoint(point_<span class="number">0</span>,point_1,<span class="keyword">self</span>.block_length[<span class="number">1</span>]),point_1))</span><br><span class="line">            elif point_<span class="number">0</span>.length == <span class="keyword">self</span>.block_length[<span class="number">0</span>]<span class="symbol">:</span></span><br><span class="line">                <span class="keyword">if</span> point_1.length &lt;= <span class="keyword">self</span>.block_length[<span class="number">1</span>]<span class="symbol">:</span></span><br><span class="line">                    None</span><br><span class="line">                <span class="symbol">else:</span></span><br><span class="line">                    segment_list.append(Segment(<span class="keyword">self</span>.Cutareapoint(point_<span class="number">0</span>,point_1,<span class="keyword">self</span>.block_length[<span class="number">1</span>]),point_1))</span><br><span class="line">            elif point_<span class="number">0</span>.length &lt; <span class="keyword">self</span>.block_length[<span class="number">1</span>]<span class="symbol">:</span></span><br><span class="line">                <span class="comment">#当segment的第一个点在区间内，有二种情况</span></span><br><span class="line">                <span class="keyword">if</span> point_1.length &lt;= <span class="keyword">self</span>.block_length[<span class="number">1</span>]<span class="symbol">:</span></span><br><span class="line">                    None</span><br><span class="line">                <span class="symbol">else:</span></span><br><span class="line">                    segment_list.append(Segment(<span class="keyword">self</span>.Cutareapoint(point_<span class="number">0</span>,point_1,<span class="keyword">self</span>.block_length[<span class="number">1</span>]),point_1))</span><br><span class="line">            <span class="symbol">else:</span></span><br><span class="line">                segment_list.append(Segment(point_<span class="number">0</span>,point_1))</span><br><span class="line">            <span class="keyword">if</span> segment_list != []<span class="symbol">:</span></span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> <span class="symbol">segment_list:</span></span><br><span class="line">                    segmentclass = <span class="keyword">self</span>.Isareaclass(i.start_pt,i.end_pt)</span><br><span class="line">                    i.updownclass = segmentclass</span><br><span class="line">                    temp_list.append(i)</span><br><span class="line">        <span class="keyword">self</span>.segmentlist = temp_list</span><br><span class="line"></span><br><span class="line">    <span class="comment">#根据getreclength与segment确认当前getreclangth对应的segment</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getnowsegment</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment">#先找到老的getreclength位于什么segment</span></span><br><span class="line">        <span class="comment">#判断的根据是getreclength大于等于segment的起始length,小于末尾的length</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(<span class="keyword">self</span>.segmentlist))<span class="symbol">:</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">self</span>.getreclength &gt;= <span class="keyword">self</span>.segmentlist[i].start_pt.length <span class="keyword">and</span> <span class="keyword">self</span>.getreclength &lt; <span class="keyword">self</span>.segmentlist[i].end_pt.<span class="symbol">length:</span></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">self</span>.segmentlist[i]</span><br><span class="line">        <span class="keyword">return</span> False </span><br><span class="line">    <span class="comment">#根据getreclength与矩形的length确认经过多少的segment</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Findsegmentnumber</span><span class="params">(<span class="keyword">self</span>,length)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="string">''</span><span class="string">'判断标准是segment是否有点在区间内或者区间点是否在segment'</span><span class="string">''</span></span><br><span class="line">        segment_list = []</span><br><span class="line">        st_length = <span class="keyword">self</span>.getreclength</span><br><span class="line">        end_length = <span class="keyword">self</span>.getreclength + length</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="keyword">self</span>.<span class="symbol">segmentlist:</span></span><br><span class="line">            seg_st_length = i.start_pt.length</span><br><span class="line">            seg_end_length = i.end_pt.length</span><br><span class="line">            flag = <span class="number">0</span></span><br><span class="line">            <span class="keyword">if</span> st_length&lt;=seg_st_length <span class="keyword">and</span> end_length &gt;= <span class="symbol">seg_st_length:</span></span><br><span class="line">                flag = <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> st_length&lt;=seg_end_length <span class="keyword">and</span> end_length &gt;= <span class="symbol">seg_end_length:</span></span><br><span class="line">                flag = <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> seg_st_length&lt;=st_length <span class="keyword">and</span> seg_end_length &gt;= <span class="symbol">st_length:</span></span><br><span class="line">                flag = <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> seg_st_length&lt;=end_length <span class="keyword">and</span> seg_end_length &gt;= <span class="symbol">end_length:</span></span><br><span class="line">                flag = <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> flag == <span class="number">1</span><span class="symbol">:</span></span><br><span class="line">                segment_list.append(i)</span><br><span class="line">        <span class="keyword">return</span> segment_list</span><br><span class="line">    <span class="comment">#得到一个矩形和一组segment</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Selectsegment</span><span class="params">(<span class="keyword">self</span>,segment_list,rec)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="symbol">segment_list:</span></span><br><span class="line">            point<span class="number">0</span> = i.start_pt</span><br><span class="line">            point1 = i.end_pt</span><br><span class="line">            tuch_<span class="number">0</span> = rec.ifpointin(point<span class="number">0</span>)</span><br><span class="line">            tuch_1 = rec.ifpointin(point1)</span><br><span class="line">            <span class="keyword">if</span> rec.ifintersectline(point<span class="number">0</span>,point1) == True <span class="keyword">or</span> tuch_<span class="number">0</span> == True <span class="keyword">or</span> tuch_1 == <span class="symbol">True:</span> <span class="comment">#如果有碰撞</span></span><br><span class="line">                <span class="keyword">return</span> False <span class="comment">#则不行</span></span><br><span class="line">        <span class="keyword">return</span> True <span class="comment">#如果一圈下来都没有碰撞,那么返回True</span></span><br><span class="line">            </span><br><span class="line">    <span class="comment">#给予距离start_point的距离,矩形的长宽,得到该矩形</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">PathaddRectangle</span><span class="params">(<span class="keyword">self</span>,distance,length,weight)</span></span><span class="symbol">:</span></span><br><span class="line">        length_vector = <span class="keyword">self</span>.vector.amplify(distance)</span><br><span class="line">        start_point = Point2D([<span class="keyword">self</span>.start_pt.x+length_vector.x,<span class="keyword">self</span>.start_pt.y+length_vector.y])</span><br><span class="line">        <span class="comment">#矩形的宽方向上向量</span></span><br><span class="line">        vec_x = Vector(-<span class="number">1</span>*<span class="keyword">self</span>.vector.y,<span class="keyword">self</span>.vector.x)</span><br><span class="line">        vec_x = vec_x.amplify(weight)</span><br><span class="line">        <span class="comment">#矩形的长方向上向量</span></span><br><span class="line">        vec_y = Vector(<span class="keyword">self</span>.vector.x,<span class="keyword">self</span>.vector.y)</span><br><span class="line">        vec_y = vec_y.amplify(length)</span><br><span class="line">        <span class="comment">#得到负的x,y向量</span></span><br><span class="line">        vec_x_na = vec_x.reverse()</span><br><span class="line">        vec_y_na = vec_y.reverse()</span><br><span class="line">        vec_lst = [vec_x,vec_y,vec_x_na,vec_y_na] <span class="comment">#得到矩形所需的向量列表</span></span><br><span class="line">        temp_rec = Rectangle(start_point,vec_lst) <span class="comment">#得到矩形</span></span><br><span class="line">        <span class="keyword">return</span> temp_rec</span><br><span class="line"></span><br><span class="line">    <span class="comment">#得到一条该path上的边缘线(点列表),从start_pt开始</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getpath</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.pathpoint_list.append(<span class="keyword">self</span>.start_pt)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="keyword">self</span>.<span class="symbol">rectangle_list:</span></span><br><span class="line">            <span class="keyword">for</span> z <span class="keyword">in</span> i.<span class="symbol">pt_lst:</span></span><br><span class="line">                <span class="keyword">self</span>.pathpoint_list.append(z)</span><br><span class="line">        <span class="keyword">self</span>.pathpoint_list.append(<span class="keyword">self</span>.end_pt)</span><br><span class="line">        temp_list = <span class="keyword">self</span>.pathpoint_list</span><br><span class="line">        <span class="keyword">return</span> temp_list</span><br><span class="line">    <span class="comment">#得到该path上所有的点</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getpoint</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        point_list = []</span><br><span class="line">        point_list.append(<span class="keyword">self</span>.start_pt)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="keyword">self</span>.<span class="symbol">rectangle_list:</span></span><br><span class="line">            <span class="keyword">for</span> z <span class="keyword">in</span> i.<span class="symbol">pt_lst:</span></span><br><span class="line">                point_list.append(z)</span><br><span class="line">        point_list.append(<span class="keyword">self</span>.end_pt)</span><br><span class="line">        <span class="keyword">return</span> point_list</span><br><span class="line">    <span class="comment">#得到该path上所有的segment</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getsegment</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        segment_list = []</span><br><span class="line">        segment_list.append(Segment(<span class="keyword">self</span>.start_pt,<span class="keyword">self</span>.end_pt))</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="keyword">self</span>.<span class="symbol">rectangle_list:</span></span><br><span class="line">            <span class="keyword">for</span> z <span class="keyword">in</span> range(<span class="number">0</span>,len(i.pt_lst))<span class="symbol">:</span></span><br><span class="line">                temp_segment = Segment(i.pt_lst[z],i.pt_lst[(z+<span class="number">1</span>)%<span class="number">4</span>])</span><br><span class="line">                segment_list.append(temp_segment)</span><br><span class="line">        <span class="keyword">return</span> segment_list</span><br><span class="line"></span><br><span class="line">    <span class="comment">#给一个向量和向量起点,返回点到点在向量垂点上的距离与起始点和垂点的length</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getvertical</span><span class="params">(<span class="keyword">self</span>,st_point,vector,point)</span></span><span class="symbol">:</span></span><br><span class="line">        point_vector = Vector(vector.y*(-<span class="number">1</span>),vector.x)</span><br><span class="line">        vertical_point = PointVec.rayrayIntersect(st_point,vector,point,point_vector)</span><br><span class="line">        height = vertical_point.twopointlength(point)</span><br><span class="line">        length = vertical_point.twopointlength(st_point)</span><br><span class="line">        <span class="keyword">return</span> height, length</span><br><span class="line"></span><br><span class="line">    <span class="comment">#得到碰到上升域线的点</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getrasepoint</span><span class="params">(<span class="keyword">self</span>,st_point,end_point,weight)</span></span><span class="symbol">:</span></span><br><span class="line">        st_end_hight_dif = end_point.hight - st_point.hight <span class="comment">#高度差</span></span><br><span class="line">        st_end_length_dif = end_point.length - st_point.length <span class="comment">#距离差</span></span><br><span class="line">        <span class="comment">#print('st_end = ',st_end_hight_dif,st_end_length_dif)</span></span><br><span class="line">        <span class="keyword">if</span> st_end_hight_dif == <span class="number">0</span><span class="symbol">:</span></span><br><span class="line">            <span class="keyword">return</span> st_point</span><br><span class="line">        elif weight &lt;= st_point.<span class="symbol">hight:</span></span><br><span class="line">            <span class="keyword">return</span> st_point</span><br><span class="line">        <span class="symbol">else:</span></span><br><span class="line">            anwser_point = st_point</span><br><span class="line">            dif = (weight-st_point.hight)/st_end_hight_dif</span><br><span class="line">            st_end_x_dif = end_point.x - st_point.x</span><br><span class="line">            st_end_y_dif = end_point.y - st_point.y</span><br><span class="line">            anwser_point.x += st_end_x_dif*dif</span><br><span class="line">            anwser_point.y += st_end_y_dif*dif</span><br><span class="line">            anwser_point.hight += st_end_hight_dif*dif</span><br><span class="line">            anwser_point.length += st_end_length_dif*dif</span><br><span class="line">            <span class="keyword">return</span> anwser_point</span><br><span class="line">    <span class="comment">#给两个域线上的点,返回这两个点的类型</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Isareaclass</span><span class="params">(<span class="keyword">self</span>,st_point,end_point)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="string">''</span><span class="string">'一共三种类型，上升/中空/下降，对应0/1/2'</span><span class="string">''</span></span><br><span class="line">        st_length = <span class="keyword">self</span>.vector.dot(Vector(st_point.x-<span class="keyword">self</span>.start_pt.x,st_point.y-<span class="keyword">self</span>.start_pt.y))</span><br><span class="line">        end_length = <span class="keyword">self</span>.vector.dot(Vector(end_point.x-<span class="keyword">self</span>.start_pt.x,end_point.y-<span class="keyword">self</span>.start_pt.y))</span><br><span class="line">        temp_vector = Vector(end_point.x-st_point.x,end_point.y-st_point.y)</span><br><span class="line">        cross_value = <span class="keyword">self</span>.vector.cross(temp_vector)</span><br><span class="line">        <span class="comment">#print('st_length',st_length,'end_length',end_length,'block',self.block_length[0])</span></span><br><span class="line">        <span class="comment">#if st_length &gt;= self.block_length[0] and st_length &lt;= self.block_length[1]+0.5 and end_length &gt;= self.block_length[0] and end_length &lt;= self.block_length[1]+0.5:</span></span><br><span class="line">        <span class="comment">#    return 1</span></span><br><span class="line">        <span class="keyword">if</span> cross_value &gt;= <span class="number">0</span><span class="symbol">:</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="symbol">else:</span></span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">    <span class="comment">#排一个矩形</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Intersectrec</span><span class="params">(<span class="keyword">self</span>,weight,length)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment">#如果是阴角的情况getreclenght超出了path的长度</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">self</span>.angleclass == -<span class="number">1</span><span class="symbol">:</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">self</span>.getreclength+length &gt; <span class="keyword">self</span>.<span class="symbol">length:</span></span><br><span class="line">                <span class="keyword">return</span> False</span><br><span class="line">        <span class="symbol">else:</span></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">self</span>.getreclength &gt;= <span class="keyword">self</span>.<span class="symbol">length:</span></span><br><span class="line">                <span class="keyword">return</span> False</span><br><span class="line">        <span class="comment">#首先讨论域线存在的情况</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">self</span>.segmentlist != []<span class="symbol">:</span></span><br><span class="line">            segment = <span class="keyword">self</span>.Getnowsegment()</span><br><span class="line">            <span class="comment">#中空的情况</span></span><br><span class="line">            <span class="keyword">if</span> segment == <span class="symbol">False:</span></span><br><span class="line">                <span class="string">''</span><span class="string">'不存在装不下的情况,也不用去找tuchpoint,直接用原始的getreclength计算'</span><span class="string">''</span></span><br><span class="line">                segment_list = <span class="keyword">self</span>.Findsegmentnumber(length)</span><br><span class="line">                rec = <span class="keyword">self</span>.PathaddRectangle(<span class="keyword">self</span>.getreclength,length,weight)</span><br><span class="line">                flag = <span class="keyword">self</span>.Selectsegment(segment_list,rec)</span><br><span class="line">                <span class="keyword">if</span> flag == <span class="symbol">True:</span></span><br><span class="line">                    <span class="string">''</span><span class="string">'成功'</span><span class="string">''</span></span><br><span class="line">                    <span class="keyword">self</span>.rectangle_list.append(rec)</span><br><span class="line">                    <span class="keyword">self</span>.getreclength += length</span><br><span class="line">                    <span class="keyword">return</span> True</span><br><span class="line">                <span class="symbol">else:</span></span><br><span class="line">                    <span class="keyword">self</span>.getreclength = segment_list[<span class="number">0</span>].start_pt.length <span class="comment">#中空无seg,所以用seg列表中的代替</span></span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">self</span>.Intersectrec(weight,length)</span><br><span class="line">            <span class="comment">#上升的情况</span></span><br><span class="line">            elif segment.updownclass == <span class="number">0</span>: </span><br><span class="line">                max_hight = segment.end_pt.hight</span><br><span class="line">                <span class="keyword">if</span> max_hight &lt; <span class="symbol">weight:</span> <span class="comment">#如果最高点都装不下</span></span><br><span class="line">                    <span class="string">''</span><span class="string">'移动getreclength,递归函数'</span><span class="string">''</span></span><br><span class="line">                    <span class="keyword">self</span>.getreclength = segment.end_pt.length</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">self</span>.Intersectrec(weight,length)</span><br><span class="line">                <span class="symbol">else:</span> <span class="comment">#如果最高点装的下的情况</span></span><br><span class="line">                    <span class="string">''</span><span class="string">'更新getreclength,并且算出经过几个域点'</span><span class="string">''</span></span><br><span class="line">                    <span class="comment">#如果没碰到,则按照原样</span></span><br><span class="line">                    <span class="keyword">if</span> weight &gt; segment.start_pt.<span class="symbol">hight:</span></span><br><span class="line">                        tuch_point = <span class="keyword">self</span>.Getrasepoint(segment.start_pt,segment.end_pt,weight)</span><br><span class="line">                        <span class="keyword">self</span>.getreclength = tuch_point.length</span><br><span class="line">                    segment_list = <span class="keyword">self</span>.Findsegmentnumber(length)</span><br><span class="line">                    rec = <span class="keyword">self</span>.PathaddRectangle(<span class="keyword">self</span>.getreclength,length,weight)</span><br><span class="line">                    flag = <span class="keyword">self</span>.Selectsegment(segment_list,rec)</span><br><span class="line">                    <span class="keyword">if</span> flag == <span class="symbol">True:</span></span><br><span class="line">                        <span class="string">''</span><span class="string">'没有碰到,成功了'</span><span class="string">''</span></span><br><span class="line">                        <span class="keyword">self</span>.rectangle_list.append(rec) <span class="comment">#将矩形加入path</span></span><br><span class="line">                        <span class="keyword">self</span>.getreclength += length</span><br><span class="line">                        <span class="keyword">return</span> True</span><br><span class="line">                    <span class="symbol">else:</span></span><br><span class="line">                        <span class="string">''</span><span class="string">'有碰到，说明这条不行,跳到末点'</span><span class="string">''</span></span><br><span class="line">                        <span class="keyword">self</span>.getreclength = segment.end_pt.length</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">self</span>.Intersectrec(weight,length) <span class="comment">#递归函数</span></span><br><span class="line">            <span class="comment">#下降的情况</span></span><br><span class="line">            <span class="symbol">else:</span></span><br><span class="line">                <span class="string">''</span><span class="string">'下降也是直接用原始的getreclength计算即可'</span><span class="string">''</span></span><br><span class="line">                segment_list = <span class="keyword">self</span>.Findsegmentnumber(length)</span><br><span class="line">                rec = <span class="keyword">self</span>.PathaddRectangle(<span class="keyword">self</span>.getreclength,length,weight)</span><br><span class="line">                flag = <span class="keyword">self</span>.Selectsegment(segment_list,rec)</span><br><span class="line">                <span class="keyword">if</span> flag == <span class="symbol">True:</span></span><br><span class="line">                    <span class="string">''</span><span class="string">'成功'</span><span class="string">''</span></span><br><span class="line">                    <span class="keyword">self</span>.rectangle_list.append(rec)</span><br><span class="line">                    <span class="keyword">self</span>.getreclength += length</span><br><span class="line">                    <span class="keyword">return</span> True</span><br><span class="line">                <span class="symbol">else:</span></span><br><span class="line">                    <span class="keyword">self</span>.getreclength = segment.end_pt.length</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">self</span>.Intersectrec(weight,length)</span><br><span class="line">        <span class="comment">#域线不存在的时候</span></span><br><span class="line">        <span class="symbol">else:</span></span><br><span class="line">            <span class="string">''</span><span class="string">'直接得到rec,更新getreclength'</span><span class="string">''</span></span><br><span class="line">            rec = <span class="keyword">self</span>.PathaddRectangle(<span class="keyword">self</span>.getreclength,length,weight)</span><br><span class="line">            <span class="keyword">self</span>.rectangle_list.append(rec)</span><br><span class="line">            <span class="keyword">self</span>.getreclength += length</span><br><span class="line">            <span class="keyword">return</span> True</span><br><span class="line"><span class="comment">#Path_list</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Path_list</span>():</span></span><br><span class="line">    <span class="string">'构造沿边排房子单条路的集合'</span></span><br><span class="line">    <span class="comment">#接受point2D的集合</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>,point_list)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.point_list = point_list</span><br><span class="line">        <span class="keyword">self</span>.close = False <span class="comment">#是否闭合</span></span><br><span class="line">        <span class="keyword">self</span>.path_number = len(point_list)-<span class="number">1</span></span><br><span class="line">        <span class="keyword">self</span>.path_list = [] <span class="comment">#储存path</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">self</span>.point_list[<span class="number">0</span>].x == <span class="keyword">self</span>.point_list[-<span class="number">1</span>].x <span class="keyword">and</span> <span class="keyword">self</span>.point_list[<span class="number">0</span>].y == <span class="keyword">self</span>.point_list[-<span class="number">1</span>].<span class="symbol">y:</span></span><br><span class="line">            <span class="keyword">self</span>.close = True</span><br><span class="line">        <span class="comment">#初始化path_list</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(point_list)-<span class="number">1</span>)<span class="symbol">:</span></span><br><span class="line">            path = Path(point_list[i].x,point_list[i].y,point_list[i+<span class="number">1</span>].x,point_list[i+<span class="number">1</span>].y)</span><br><span class="line">            <span class="keyword">self</span>.path_list.append(path)</span><br><span class="line">    <span class="comment">#得到每个path的阴阳角判定</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getangleclass</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">if</span> len(<span class="keyword">self</span>.path_list) &gt; <span class="number">1</span><span class="symbol">:</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(<span class="keyword">self</span>.path_list)-<span class="number">1</span>)<span class="symbol">:</span></span><br><span class="line">                path1 = <span class="keyword">self</span>.path_list[i]</span><br><span class="line">                path2 = <span class="keyword">self</span>.path_list[i+<span class="number">1</span>]</span><br><span class="line">                vector1 = Vector(path1.end_pt.x-path1.start_pt.x,path1.end_pt.y-path1.start_pt.y)</span><br><span class="line">                vector2 = Vector(path2.end_pt.x-path2.start_pt.x,path2.end_pt.y-path2.start_pt.y)</span><br><span class="line">                vector1_ver = Vector(vector1.y*-<span class="number">1</span>,vector1.x)</span><br><span class="line">                <span class="keyword">if</span> vector2.dot(vector1_ver) &gt; <span class="number">0</span><span class="symbol">:</span></span><br><span class="line">                    <span class="keyword">self</span>.path_list[i].angleclass = -<span class="number">1</span> <span class="comment">#为阴角</span></span><br><span class="line">                <span class="symbol">else:</span></span><br><span class="line">                    <span class="keyword">self</span>.path_list[i].angleclass = <span class="number">1</span> <span class="comment">#为阳角</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#返回边界</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getsize</span><span class="params">(<span class="keyword">self</span>)</span></span><span class="symbol">:</span></span><br><span class="line">        anwser_list = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="keyword">self</span>.<span class="symbol">path_list:</span></span><br><span class="line">            temp_list = i.Getpath()</span><br><span class="line">            temp_list = temp_list[<span class="symbol">:-</span><span class="number">1</span>]</span><br><span class="line">            <span class="keyword">for</span> z <span class="keyword">in</span> <span class="symbol">temp_list:</span></span><br><span class="line">                anwser_list.append(z)</span><br><span class="line">        anwser_list.append(<span class="keyword">self</span>.path_list[-<span class="number">1</span>].Getpath()[-<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">return</span> anwser_list</span><br><span class="line">    <span class="comment">#得到普通点列表,转化为域点</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getareapointlist</span><span class="params">(<span class="keyword">self</span>,point_list,path)</span></span><span class="symbol">:</span></span><br><span class="line">        temp_list = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="symbol">point_list:</span></span><br><span class="line">            areapoint = Areapoint(i,path)</span><br><span class="line">            temp_list.append(areapoint)</span><br><span class="line">        path.arealist = temp_list</span><br><span class="line">    <span class="comment">#排矩形,得到一组长宽的列表</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Arrangerec</span><span class="params">(<span class="keyword">self</span>,recmessage)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="string">''</span><span class="string">'迭代path的列表，能排就排，不能排就换下一条'</span><span class="string">''</span></span><br><span class="line">        path_number = len(<span class="keyword">self</span>.path_list)</span><br><span class="line">        cnt = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,int(len(recmessage)/<span class="number">2</span>))<span class="symbol">:</span></span><br><span class="line">            <span class="keyword">for</span> z <span class="keyword">in</span> range(cnt,len(<span class="keyword">self</span>.path_list))<span class="symbol">:</span></span><br><span class="line">                <span class="keyword">self</span>.Getarea(z)</span><br><span class="line">                anwser = <span class="keyword">self</span>.path_list[z].Intersectrec(recmessage[i*<span class="number">2</span>],recmessage[i*<span class="number">2</span>+<span class="number">1</span>])</span><br><span class="line">                <span class="keyword">if</span> anwser == <span class="symbol">True:</span></span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                <span class="symbol">else:</span></span><br><span class="line">                    cnt += <span class="number">1</span></span><br><span class="line">    <span class="comment">#返回index两边的边界(pint_list)      </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Gettwosize</span><span class="params">(<span class="keyword">self</span>,index)</span></span><span class="symbol">:</span></span><br><span class="line">        small_list = [<span class="keyword">self</span>.path_list[index].start_pt]</span><br><span class="line">        big_list = [<span class="keyword">self</span>.path_list[index].end_pt]</span><br><span class="line">        <span class="comment">#得到小于index的一边</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,index)<span class="symbol">:</span></span><br><span class="line">            temp = index-i-<span class="number">1</span></span><br><span class="line">            temp_list = <span class="keyword">self</span>.path_list[temp].Getpath()</span><br><span class="line">            temp_list.reverse()</span><br><span class="line">            temp_list = temp_list[<span class="number">1</span><span class="symbol">:</span>]</span><br><span class="line">            <span class="keyword">for</span> z <span class="keyword">in</span> <span class="symbol">temp_list:</span></span><br><span class="line">                small_list.append(z)</span><br><span class="line">        <span class="comment">#得到大于index的一边</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(index+<span class="number">1</span>,<span class="keyword">self</span>.path_number)<span class="symbol">:</span></span><br><span class="line">            temp = i</span><br><span class="line">            temp_list = <span class="keyword">self</span>.path_list[temp].Getpath()</span><br><span class="line">            temp_list = temp_list[<span class="number">1</span><span class="symbol">:</span>]</span><br><span class="line">            <span class="keyword">for</span> z <span class="keyword">in</span> <span class="symbol">temp_list:</span></span><br><span class="line">                big_list.append(z)</span><br><span class="line">        <span class="keyword">return</span> small_list,big_list</span><br><span class="line">    <span class="comment">#返回除了index外的点</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getotherpoint</span><span class="params">(<span class="keyword">self</span>,index)</span></span><span class="symbol">:</span></span><br><span class="line">        point_list = []</span><br><span class="line">        small_list = []</span><br><span class="line">        big_list = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,index)<span class="symbol">:</span></span><br><span class="line">            temp_small = <span class="keyword">self</span>.path_list[i].Getpoint()</span><br><span class="line">            <span class="keyword">for</span> z <span class="keyword">in</span> <span class="symbol">temp_small:</span></span><br><span class="line">                small_list.append(z)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(index+<span class="number">1</span>,<span class="keyword">self</span>.path_number)<span class="symbol">:</span></span><br><span class="line">            temp_big = <span class="keyword">self</span>.path_list[i].Getpoint()</span><br><span class="line">            <span class="keyword">for</span> z <span class="keyword">in</span> <span class="symbol">temp_big:</span></span><br><span class="line">                big_list.append(z)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(<span class="keyword">self</span>.path_list))<span class="symbol">:</span></span><br><span class="line">            <span class="keyword">if</span> i != <span class="symbol">index:</span></span><br><span class="line">                temp_point_list = <span class="keyword">self</span>.path_list[i].Getpoint()</span><br><span class="line">                <span class="keyword">for</span> z <span class="keyword">in</span> <span class="symbol">temp_point_list:</span></span><br><span class="line">                    point_list.append(z)</span><br><span class="line">        <span class="keyword">return</span> point_list, small_list, big_list</span><br><span class="line">    <span class="comment">#返回除了index外的segment</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getotherseg</span><span class="params">(<span class="keyword">self</span>,index)</span></span><span class="symbol">:</span></span><br><span class="line">        segment_list = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(<span class="keyword">self</span>.path_list))<span class="symbol">:</span></span><br><span class="line">            <span class="keyword">if</span> i != <span class="symbol">index:</span></span><br><span class="line">                temp_segment_list = <span class="keyword">self</span>.path_list[i].Getsegment()</span><br><span class="line">                <span class="keyword">for</span> z <span class="keyword">in</span> <span class="symbol">temp_segment_list:</span></span><br><span class="line">                    segment_list.append(z)</span><br><span class="line">        <span class="keyword">return</span> segment_list</span><br><span class="line">    <span class="comment">#判断一个点是否在index线的上空</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isFlay</span><span class="params">(<span class="keyword">self</span>,index,point)</span></span><span class="symbol">:</span></span><br><span class="line">        path = <span class="keyword">self</span>.path_list[index]</span><br><span class="line">        path_vector = path.vector</span><br><span class="line">        path_vector.na = path_vector.reverse()</span><br><span class="line">        path_start_vector = Vector(point.x-path.start_pt.x,point.y-path.start_pt.y)</span><br><span class="line">        path_end_vector = Vector(point.x-path.end_pt.x,point.y-path.end_pt.y)</span><br><span class="line">        <span class="keyword">if</span> path_vector.dot(path_start_vector) &gt;= <span class="number">0</span> <span class="keyword">and</span> path_vector.cross(path_start_vector) &gt;= <span class="number">0</span> <span class="keyword">and</span> path_vector.na.dot(path_end_vector) &gt;= <span class="number">0</span> <span class="keyword">and</span> path_vector.na.cross(path_end_vector) &lt;= <span class="number">0</span><span class="symbol">:</span></span><br><span class="line">            <span class="keyword">return</span> True</span><br><span class="line">        <span class="symbol">else:</span></span><br><span class="line">            <span class="keyword">return</span> False</span><br><span class="line">    <span class="comment">#判断阳角上的域点</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isFlay1</span><span class="params">(<span class="keyword">self</span>,index,point)</span></span><span class="symbol">:</span></span><br><span class="line">        path = <span class="keyword">self</span>.path_list[index]</span><br><span class="line">        path_vector = path.vector</span><br><span class="line">        path_vector.na = path_vector.reverse()</span><br><span class="line">        path_start_vector = Vector(point.x-path.start_pt.x,point.y-path.start_pt.y)</span><br><span class="line">        path_end_vector = Vector(point.x-path.end_pt.x,point.y-path.end_pt.y)</span><br><span class="line">        <span class="keyword">if</span> path_vector.dot(path_start_vector) &gt;= <span class="number">0</span> <span class="keyword">and</span> path_vector.cross(path_start_vector) &gt; <span class="number">0</span>:  <span class="comment">#and path_vector.na.dot(path_end_vector) &gt;= 0 and path_vector.na.cross(path_end_vector) &lt;= 0</span></span><br><span class="line">            <span class="keyword">return</span> True</span><br><span class="line">        <span class="symbol">else:</span></span><br><span class="line">            <span class="keyword">return</span> False</span><br><span class="line">    <span class="comment">#判断中空点</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isFlaytwo</span><span class="params">(<span class="keyword">self</span>,index,point)</span></span><span class="symbol">:</span></span><br><span class="line">        path = <span class="keyword">self</span>.path_list[index]</span><br><span class="line">        path_vector = path.vector</span><br><span class="line">        path_vector.na = path_vector.reverse()</span><br><span class="line">        path_start_vector = Vector(point.x-path.start_pt.x,point.y-path.start_pt.y)</span><br><span class="line">        path_end_vector = Vector(point.x-path.end_pt.x,point.y-path.end_pt.y)</span><br><span class="line">        <span class="keyword">if</span> path_vector.cross(path_start_vector) &gt;= <span class="number">0</span><span class="symbol">:</span></span><br><span class="line">            <span class="keyword">return</span> True</span><br><span class="line">        <span class="symbol">else:</span></span><br><span class="line">            <span class="keyword">return</span> False</span><br><span class="line">    <span class="comment">#返回点在线上的长度</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getlength</span><span class="params">(<span class="keyword">self</span>,index,point_list)</span></span><span class="symbol">:</span></span><br><span class="line">        vector_length = []</span><br><span class="line">        index_start_pt = <span class="keyword">self</span>.path_list[index].start_pt</span><br><span class="line">        index_end_pt = <span class="keyword">self</span>.path_list[index].end_pt</span><br><span class="line">        index_vector = <span class="keyword">self</span>.path_list[index].vector</span><br><span class="line">        index_vector_unit = index_vector.unit()</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="symbol">point_list:</span></span><br><span class="line">            temp_vector = Vector(i.x-index_start_pt.x,i.y-index_start_pt.y)</span><br><span class="line">            temp_length = index_vector_unit.dot(temp_vector)</span><br><span class="line">            vector_length.append(temp_length)</span><br><span class="line">        <span class="keyword">return</span> vector_length</span><br><span class="line">    <span class="comment">#返回一条域线</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Getarea</span><span class="params">(<span class="keyword">self</span>,index)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="comment">#分别讨论域线阴阳角的区别</span></span><br><span class="line">        <span class="comment">#当是阴角的情况(小于180)</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">self</span>.path_list[index].angleclass == -<span class="number">1</span>: </span><br><span class="line">            all_point,small_point,big_point = <span class="keyword">self</span>.Getotherpoint(index)</span><br><span class="line">            all_segment = <span class="keyword">self</span>.Getotherseg(index)</span><br><span class="line">            vector_length = []</span><br><span class="line">            index_vector = <span class="keyword">self</span>.path_list[index].vector</span><br><span class="line">            interset_vector = Vector(-<span class="number">1</span>*index_vector.y,index_vector.x)</span><br><span class="line">            index_start_pt = <span class="keyword">self</span>.path_list[index].start_pt</span><br><span class="line">            index_end_pt = <span class="keyword">self</span>.path_list[index].end_pt</span><br><span class="line">            anwser_list = [index_start_pt]</span><br><span class="line">            <span class="comment">#求中空区间的length</span></span><br><span class="line">            block_length = []</span><br><span class="line">            small_point_temp = []</span><br><span class="line">            big_point_temp = []</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="symbol">small_point:</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">self</span>.isFlaytwo(index,i)<span class="symbol">:</span></span><br><span class="line">                    small_point_temp.append(i)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="symbol">big_point:</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">self</span>.isFlaytwo(index,i)<span class="symbol">:</span></span><br><span class="line">                    big_point_temp.append(i)</span><br><span class="line">            small_point = small_point_temp</span><br><span class="line">            big_point = big_point_temp</span><br><span class="line">            small_length = <span class="keyword">self</span>.Getlength(index,small_point)</span><br><span class="line">            big_length = <span class="keyword">self</span>.Getlength(index,big_point)</span><br><span class="line">            small_length.sort()</span><br><span class="line">            big_length.sort()</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> small_length != [] <span class="keyword">and</span> big_length != []<span class="symbol">:</span></span><br><span class="line">                <span class="keyword">if</span> small_length[-<span class="number">1</span>] &lt; big_length[<span class="number">0</span>]<span class="symbol">:</span></span><br><span class="line">                    block_length = [small_length[-<span class="number">1</span>],big_length[<span class="number">0</span>]]</span><br><span class="line">                <span class="symbol">else:</span></span><br><span class="line">                    block_length = [-<span class="number">1</span>,-<span class="number">1</span>]</span><br><span class="line">            elif small_length == [] <span class="keyword">and</span> big_length == []<span class="symbol">:</span></span><br><span class="line">                block_length = [<span class="number">0</span>,<span class="keyword">self</span>.path_list[index].length]</span><br><span class="line">            elif small_length == [] <span class="keyword">and</span> big_length[<span class="number">0</span>] &gt; <span class="number">0</span><span class="symbol">:</span></span><br><span class="line">                block_length = [<span class="number">0</span>,big_length[<span class="number">0</span>]]</span><br><span class="line">            elif big_length == [] <span class="keyword">and</span> small_length[-<span class="number">1</span>] &lt; <span class="keyword">self</span>.path_list[index].<span class="symbol">length:</span></span><br><span class="line">                block_length = [small_length[-<span class="number">1</span>],<span class="keyword">self</span>.path_list[index].length]</span><br><span class="line">            <span class="symbol">else:</span></span><br><span class="line">                block_length = [-<span class="number">1</span>,-<span class="number">1</span>]</span><br><span class="line">            <span class="comment">#</span></span><br><span class="line">            index_vector_unit = index_vector.unit()</span><br><span class="line">            <span class="comment">#求length_vector</span></span><br><span class="line">            vector_length = <span class="keyword">self</span>.Getlength(index,all_point)</span><br><span class="line">            temp_vector_length = []</span><br><span class="line">            <span class="comment">###精度</span></span><br><span class="line">            diff = <span class="number">10</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(vector_length))<span class="symbol">:</span></span><br><span class="line">                <span class="keyword">if</span> vector_length[i] &gt; <span class="number">0</span> <span class="keyword">and</span> vector_length[i] &lt; <span class="keyword">self</span>.path_list[index].<span class="symbol">length:</span></span><br><span class="line">                    temp_vector_length.append(vector_length[i])</span><br><span class="line">            vector_length = list(set(temp_vector_length))</span><br><span class="line">            vector_length.sort()</span><br><span class="line">            <span class="keyword">if</span> vector_length != []<span class="symbol">:</span></span><br><span class="line">                st_value = vector_length[<span class="number">0</span>]/diff</span><br><span class="line">                end_value = (<span class="keyword">self</span>.path_list[index].length-vector_length[-<span class="number">1</span>])/diff</span><br><span class="line">                temp_vector_length = []</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,diff-<span class="number">1</span>)<span class="symbol">:</span></span><br><span class="line">                    temp_vector_length.append(i*st_value)</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(vector_length)-<span class="number">1</span>)<span class="symbol">:</span></span><br><span class="line">                    temp_vector_length.append(vector_length[i])</span><br><span class="line">                    value = (vector_length[i+<span class="number">1</span>]-vector_length[i])/diff</span><br><span class="line">                    <span class="keyword">for</span> z <span class="keyword">in</span> range(<span class="number">1</span>,diff-<span class="number">1</span>)<span class="symbol">:</span></span><br><span class="line">                        temp_vector_length.append(vector_length[i]+z*value)</span><br><span class="line">                temp_vector_length.append(vector_length[-<span class="number">1</span>])</span><br><span class="line">                vector_length = temp_vector_length</span><br><span class="line">            <span class="comment">###插入其他点</span></span><br><span class="line">            difff = <span class="number">1000</span></span><br><span class="line">            temp_value = difff</span><br><span class="line">            <span class="keyword">while</span>(temp_value&lt;<span class="keyword">self</span>.path_list[index].length)<span class="symbol">:</span></span><br><span class="line">                vector_length.append(temp_value)</span><br><span class="line">                temp_value += difff</span><br><span class="line">            vector_length = list(set(vector_length))</span><br><span class="line">            vector_length.sort()</span><br><span class="line">            <span class="comment">#</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="symbol">vector_length:</span></span><br><span class="line">                temp_point = index_start_pt.addVec(index_vector_unit.amplify(i))</span><br><span class="line">                temp_inter_list = []</span><br><span class="line">                now_inter_list = []</span><br><span class="line">                <span class="keyword">for</span> z <span class="keyword">in</span> <span class="symbol">all_segment:</span></span><br><span class="line">                    temp_anwser = z.interpoint(temp_point,interset_vector)</span><br><span class="line">                    <span class="keyword">if</span> temp_anwser[<span class="number">0</span>] == <span class="symbol">True:</span></span><br><span class="line">                        temp_inter_list.append(temp_anwser[<span class="number">1</span>])</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(temp_inter_list))<span class="symbol">:</span></span><br><span class="line">                    <span class="keyword">if</span> <span class="keyword">self</span>.isFlay(index,temp_inter_list[i]) == <span class="symbol">True:</span></span><br><span class="line">                        now_inter_list.append(temp_inter_list[i])</span><br><span class="line">                temp_inter_list = now_inter_list</span><br><span class="line">                <span class="keyword">if</span> temp_inter_list == []<span class="symbol">:</span></span><br><span class="line">                    None</span><br><span class="line">                <span class="symbol">else:</span></span><br><span class="line">                    min = <span class="number">11111111</span></span><br><span class="line">                    anwser_point = temp_inter_list[<span class="number">0</span>]</span><br><span class="line">                    <span class="keyword">for</span> q <span class="keyword">in</span> <span class="symbol">temp_inter_list:</span></span><br><span class="line">                        length = q.twopointlength(temp_point)</span><br><span class="line">                        <span class="keyword">if</span> length &lt;= <span class="symbol">min:</span></span><br><span class="line">                            min = length</span><br><span class="line">                            anwser_point = q</span><br><span class="line">                    anwser_list.append(anwser_point)</span><br><span class="line">            anwser_list.append(index_end_pt)</span><br><span class="line">            <span class="keyword">self</span>.Getareapointlist(anwser_list,<span class="keyword">self</span>.path_list[index])</span><br><span class="line">            <span class="keyword">self</span>.path_list[index].block_length = block_length</span><br><span class="line">            <span class="keyword">self</span>.path_list[index].Getsegmentlist() <span class="comment">#得到域线</span></span><br><span class="line">            <span class="keyword">return</span> anwser_list, block_length</span><br><span class="line">        <span class="symbol">else:</span></span><br><span class="line">            all_point,small_point,big_point = <span class="keyword">self</span>.Getotherpoint(index)</span><br><span class="line">            all_segment = <span class="keyword">self</span>.Getotherseg(index)</span><br><span class="line">            vector_length = []</span><br><span class="line">            index_vector = <span class="keyword">self</span>.path_list[index].vector</span><br><span class="line">            interset_vector = Vector(-<span class="number">1</span>*index_vector.y,index_vector.x)</span><br><span class="line">            index_start_pt = <span class="keyword">self</span>.path_list[index].start_pt</span><br><span class="line">            index_end_pt = <span class="keyword">self</span>.path_list[index].end_pt</span><br><span class="line">            anwser_list = [index_start_pt]</span><br><span class="line">            <span class="comment">#求中空区间的length</span></span><br><span class="line">            block_length = []</span><br><span class="line">            small_point_temp = []</span><br><span class="line">            big_point_temp = []</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="symbol">small_point:</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">self</span>.isFlaytwo(index,i)<span class="symbol">:</span></span><br><span class="line">                    small_point_temp.append(i)</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="symbol">big_point:</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">self</span>.isFlaytwo(index,i)<span class="symbol">:</span></span><br><span class="line">                    big_point_temp.append(i)</span><br><span class="line">            small_point = small_point_temp</span><br><span class="line">            big_point = big_point_temp</span><br><span class="line">            small_length = <span class="keyword">self</span>.Getlength(index,small_point)</span><br><span class="line">            big_length = <span class="keyword">self</span>.Getlength(index,big_point)</span><br><span class="line">            small_length.sort()</span><br><span class="line">            big_length.sort()</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> small_length != [] <span class="keyword">and</span> big_length != []<span class="symbol">:</span></span><br><span class="line">                <span class="keyword">if</span> small_length[-<span class="number">1</span>] &lt; big_length[<span class="number">0</span>]<span class="symbol">:</span></span><br><span class="line">                    block_length = [small_length[-<span class="number">1</span>],big_length[<span class="number">0</span>]]</span><br><span class="line">                <span class="symbol">else:</span></span><br><span class="line">                    block_length = [-<span class="number">1</span>,-<span class="number">1</span>]</span><br><span class="line">            elif small_length == [] <span class="keyword">and</span> big_length == []<span class="symbol">:</span></span><br><span class="line">                block_length = [<span class="number">0</span>,<span class="keyword">self</span>.path_list[index].length]</span><br><span class="line">            elif small_length == [] <span class="keyword">and</span> big_length[<span class="number">0</span>] &gt; <span class="number">0</span><span class="symbol">:</span></span><br><span class="line">                block_length = [<span class="number">0</span>,big_length[<span class="number">0</span>]]</span><br><span class="line">            elif big_length == [] <span class="keyword">and</span> small_length[-<span class="number">1</span>] &lt; <span class="keyword">self</span>.path_list[index].<span class="symbol">length:</span></span><br><span class="line">                block_length = [small_length[-<span class="number">1</span>],<span class="keyword">self</span>.path_list[index].length]</span><br><span class="line">            <span class="symbol">else:</span></span><br><span class="line">                block_length = [-<span class="number">1</span>,-<span class="number">1</span>]</span><br><span class="line">            <span class="comment">#</span></span><br><span class="line">            index_vector_unit = index_vector.unit()</span><br><span class="line">            <span class="comment">#求length_vector</span></span><br><span class="line">            vector_length = <span class="keyword">self</span>.Getlength(index,all_point)</span><br><span class="line">            temp_vector_length = []</span><br><span class="line">            <span class="comment">###精度</span></span><br><span class="line">            diff = <span class="number">10</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(vector_length))<span class="symbol">:</span></span><br><span class="line">                <span class="keyword">if</span> vector_length[i] &gt; <span class="number">0</span>: <span class="comment"># and vector_length[i] &lt; self.path_list[index].length</span></span><br><span class="line">                    temp_vector_length.append(vector_length[i])</span><br><span class="line">            vector_length = list(set(temp_vector_length))</span><br><span class="line">            vector_length.sort()</span><br><span class="line">            <span class="keyword">if</span> vector_length != []<span class="symbol">:</span></span><br><span class="line">                st_value = vector_length[<span class="number">0</span>]/diff</span><br><span class="line">                end_value = (<span class="keyword">self</span>.path_list[index].length-vector_length[-<span class="number">1</span>])/diff</span><br><span class="line">                temp_vector_length = []</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,diff-<span class="number">1</span>)<span class="symbol">:</span></span><br><span class="line">                    temp_vector_length.append(i*st_value)</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(vector_length)-<span class="number">1</span>)<span class="symbol">:</span></span><br><span class="line">                    temp_vector_length.append(vector_length[i])</span><br><span class="line">                    value = (vector_length[i+<span class="number">1</span>]-vector_length[i])/diff</span><br><span class="line">                    <span class="keyword">for</span> z <span class="keyword">in</span> range(<span class="number">1</span>,diff-<span class="number">1</span>)<span class="symbol">:</span></span><br><span class="line">                        temp_vector_length.append(vector_length[i]+z*value)</span><br><span class="line">                temp_vector_length.append(vector_length[-<span class="number">1</span>])</span><br><span class="line">                vector_length = temp_vector_length</span><br><span class="line">            <span class="comment">###插入其他点</span></span><br><span class="line">            difff = <span class="number">1000</span></span><br><span class="line">            temp_value = difff</span><br><span class="line">            <span class="keyword">while</span>(temp_value&lt;<span class="keyword">self</span>.path_list[index].length)<span class="symbol">:</span></span><br><span class="line">                vector_length.append(temp_value)</span><br><span class="line">                temp_value += difff</span><br><span class="line">            vector_length = list(set(vector_length))</span><br><span class="line">            vector_length.sort()</span><br><span class="line">            <span class="comment">#</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="symbol">vector_length:</span></span><br><span class="line">                temp_point = index_start_pt.addVec(index_vector_unit.amplify(i))</span><br><span class="line">                temp_inter_list = []</span><br><span class="line">                now_inter_list = []</span><br><span class="line">                <span class="keyword">for</span> z <span class="keyword">in</span> <span class="symbol">all_segment:</span></span><br><span class="line">                    temp_anwser = z.interpoint(temp_point,interset_vector)</span><br><span class="line">                    <span class="keyword">if</span> temp_anwser[<span class="number">0</span>] == <span class="symbol">True:</span></span><br><span class="line">                        temp_inter_list.append(temp_anwser[<span class="number">1</span>])</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(temp_inter_list))<span class="symbol">:</span></span><br><span class="line">                    <span class="keyword">if</span> <span class="keyword">self</span>.isFlay1(index,temp_inter_list[i]) == <span class="symbol">True:</span></span><br><span class="line">                        now_inter_list.append(temp_inter_list[i])</span><br><span class="line">                temp_inter_list = now_inter_list</span><br><span class="line">                <span class="keyword">if</span> temp_inter_list == []<span class="symbol">:</span></span><br><span class="line">                    None</span><br><span class="line">                <span class="symbol">else:</span></span><br><span class="line">                    min = <span class="number">11111111</span></span><br><span class="line">                    anwser_point = temp_inter_list[<span class="number">0</span>]</span><br><span class="line">                    <span class="keyword">for</span> q <span class="keyword">in</span> <span class="symbol">temp_inter_list:</span></span><br><span class="line">                        length = q.twopointlength(temp_point)</span><br><span class="line">                        <span class="keyword">if</span> length &lt;= min <span class="keyword">and</span> length != <span class="number">0</span><span class="symbol">:</span></span><br><span class="line">                            min = length</span><br><span class="line">                            anwser_point = q</span><br><span class="line">                    anwser_list.append(anwser_point)</span><br><span class="line">            <span class="keyword">self</span>.Getareapointlist(anwser_list,<span class="keyword">self</span>.path_list[index])</span><br><span class="line">            <span class="keyword">self</span>.path_list[index].block_length = block_length</span><br><span class="line">            <span class="keyword">self</span>.path_list[index].Getsegmentlist() <span class="comment">#得到域线</span></span><br><span class="line">            <span class="keyword">return</span> anwser_list, block_length</span><br><span class="line"> </span><br><span class="line"><span class="comment">#Segment</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Segment</span>():</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(<span class="keyword">self</span>,start_pt,end_pt)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">self</span>.vector = Vector(end_pt.x-start_pt.x,end_pt.y-start_pt.y)</span><br><span class="line">        <span class="keyword">self</span>.start_pt = start_pt</span><br><span class="line">        <span class="keyword">self</span>.end_pt = end_pt</span><br><span class="line">        <span class="keyword">self</span>.updownclass = <span class="number">0</span> <span class="comment">#0上升1下降</span></span><br><span class="line">    <span class="comment">#给一条射线,判断是否有交点,如果平行输出最近的点</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">interpoint</span><span class="params">(<span class="keyword">self</span>,point,vector)</span></span><span class="symbol">:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">self</span>.vector.judgeVectorParallel(vector)<span class="symbol">:</span></span><br><span class="line">            st_vector = Vector(<span class="keyword">self</span>.start_pt.x-point.x,<span class="keyword">self</span>.start_pt.y-point.y)</span><br><span class="line">            <span class="keyword">if</span> st_vector.cross(vector) == <span class="number">0</span><span class="symbol">:</span></span><br><span class="line">                st_length = <span class="keyword">self</span>.start_pt.twopointlength(point)</span><br><span class="line">                end_length = <span class="keyword">self</span>.end_pt.twopointlength(point)</span><br><span class="line">                <span class="keyword">if</span> st_length &gt; <span class="symbol">end_length:</span></span><br><span class="line">                    <span class="keyword">return</span> [True,<span class="keyword">self</span>.start_pt]</span><br><span class="line">                <span class="symbol">else:</span></span><br><span class="line">                    <span class="keyword">return</span> [True,<span class="keyword">self</span>.end_pt]</span><br><span class="line">            <span class="symbol">else:</span></span><br><span class="line">                <span class="keyword">return</span> [False]</span><br><span class="line">        <span class="symbol">else:</span></span><br><span class="line">            temp_point = PointVec.rayrayIntersect(<span class="keyword">self</span>.start_pt,<span class="keyword">self</span>.vector,point,vector)</span><br><span class="line">            temp_point_vector = Vector(temp_point.x-<span class="keyword">self</span>.start_pt.x,temp_point.y-<span class="keyword">self</span>.start_pt.y)</span><br><span class="line">            dotlin_lin = <span class="keyword">self</span>.vector.dot(<span class="keyword">self</span>.vector)</span><br><span class="line">            dotlin_ver = <span class="keyword">self</span>.vector.dot(temp_point_vector)</span><br><span class="line">            <span class="keyword">if</span> dotlin_ver &lt; <span class="number">0</span>+(-<span class="number">0</span>.<span class="number">5</span>) <span class="keyword">or</span> dotlin_ver &gt; dotlin_lin+<span class="number">0</span>.<span class="number">5</span><span class="symbol">:</span></span><br><span class="line">                <span class="keyword">return</span> [False]</span><br><span class="line">            <span class="symbol">else:</span></span><br><span class="line">                <span class="keyword">return</span> [True,temp_point]</span><br></pre></td></tr></table></figure>
+<p>好吧好吧，实在是有点长。很多精力都花费在了边界条件上，比如一个大于等于0会造成什么后果,如何处理这种问题还得多总结。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/29/向量叉积在判断阴阳角中的应用/" rel="next" title="向量叉积在判断阴阳角中的应用">
+                <i class="fa fa-chevron-left"></i> 向量叉积在判断阴阳角中的应用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjMyMC8xMjg1NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/25_h.png"
+                alt="Hank" />
+            
+              <p class="site-author-name" itemprop="name">Hank</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的过程，关于代码、书籍、人生的感悟。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=536623501&auto=0&height=66"></iframe>
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#沿边排列建筑"><span class="nav-number">1.</span> <span class="nav-text">沿边排列建筑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#要求"><span class="nav-number">1.1.</span> <span class="nav-text">要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">1.2.</span> <span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造"><span class="nav-number">1.3.</span> <span class="nav-text">构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪代码"><span class="nav-number">1.4.</span> <span class="nav-text">伪代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获得域线"><span class="nav-number">1.4.1.</span> <span class="nav-text">获得域线</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排列矩形"><span class="nav-number">1.4.2.</span> <span class="nav-text">排列矩形</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码实现"><span class="nav-number">1.5.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hank</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
