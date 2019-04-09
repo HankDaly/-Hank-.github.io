@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="python爬取全国标准信息平台前言目标网页 http://www.std.gov.cn/db/dbQueryhttp://www.std.gov.cn/db/dbQuery  帮大地做个毕业论文的数据爬取，粗略看了一下，不用注册填写表单但是是动态加载页面的，不知道有无反爬的机制，那就直接上python一探究竟。 解决问题将上面的各个省地方标准的相关资料都爬到xlsx上。 解决动态加载页面一开始很">
+<meta name="keywords" content="代码 书籍 感悟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python爬取全国标准信息平台">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/python爬取全国标准信息平台/index.html">
+<meta property="og:site_name" content="Hank&#39;s Blog">
+<meta property="og:description" content="python爬取全国标准信息平台前言目标网页 http://www.std.gov.cn/db/dbQueryhttp://www.std.gov.cn/db/dbQuery  帮大地做个毕业论文的数据爬取，粗略看了一下，不用注册填写表单但是是动态加载页面的，不知道有无反爬的机制，那就直接上python一探究竟。 解决问题将上面的各个省地方标准的相关资料都爬到xlsx上。 解决动态加载页面一开始很">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-09T10:42:24.418Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python爬取全国标准信息平台">
+<meta name="twitter:description" content="python爬取全国标准信息平台前言目标网页 http://www.std.gov.cn/db/dbQueryhttp://www.std.gov.cn/db/dbQuery  帮大地做个毕业论文的数据爬取，粗略看了一下，不用注册填写表单但是是动态加载页面的，不知道有无反爬的机制，那就直接上python一探究竟。 解决问题将上面的各个省地方标准的相关资料都爬到xlsx上。 解决动态加载页面一开始很">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/09/python爬取全国标准信息平台/"/>
+
+
+
+
+
+  <title>python爬取全国标准信息平台 | Hank's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hank's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">I See Fire</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/python爬取全国标准信息平台/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hank">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/25_h.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hank's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python爬取全国标准信息平台</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-09T18:13:06+08:00">
+                2019-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/程序/" itemprop="url" rel="index">
+                    <span itemprop="name">程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="python爬取全国标准信息平台"><a href="#python爬取全国标准信息平台" class="headerlink" title="python爬取全国标准信息平台"></a>python爬取全国标准信息平台</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="目标网页"><a href="#目标网页" class="headerlink" title="目标网页"></a>目标网页</h3><blockquote>
+<p><a href="http://www.std.gov.cn/db/dbQueryhttp://www.std.gov.cn/db/dbQuery" target="_blank" rel="noopener">http://www.std.gov.cn/db/dbQueryhttp://www.std.gov.cn/db/dbQuery</a></p>
+</blockquote>
+<p>帮大地做个毕业论文的数据爬取，粗略看了一下，不用注册填写表单但是是动态加载页面的，不知道有无反爬的机制，那就直接上python一探究竟。</p>
+<h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3><p>将上面的各个省地方标准的相关资料都爬到xlsx上。</p>
+<h2 id="解决动态加载页面"><a href="#解决动态加载页面" class="headerlink" title="解决动态加载页面"></a>解决动态加载页面</h2><p>一开始很困惑啊，怎么首页明明谷歌F12里面能找到的，get下来的数据里面没有啊?<br>后来又回去看看教程,一般出现这种情况是因为这种网页是用JS加载部分资源的，所以直接get该页面看不见JS的具体资源。想要验证的同学可以到谷歌商店下一个插件名叫Toggle JavaScript,它可以禁用JS，如果禁用后你想爬的数据消失了，那么就证明了该页面是动态页面.解决方法有两个：</p>
+<p>1.手动去找你要的文件的地址</p>
+<p>2.用selenium</p>
+<p>这次用方法1解决了,所以也没有用到2.下面讲一讲如何实现1的。</p>
+<p>我用的是chrom，先说明一下。在目标页面按F12，打开控制台。跳转到Networ的XHR标签。然后刷新一下页面。会发现加载了一些文件出来，我这个首页就一个文件，省的我去找了.如果有多个文件，可以依次访问他们，看看哪个是自己需要的。</p>
+<p>点进去一看，哦吼,这不就是一个json吗，要的资料都在了，看一下url</p>
+<blockquote>
+<p><a href="http://www.std.gov.cn/db/search/dbPage?searchText=&amp;op=%E6%96%B0%E7%96%86&amp;ISSUE_DATE=&amp;sortOrder=asc&amp;pageSize=15&amp;pageNumber=1&amp;_=1554805618710" target="_blank" rel="noopener">http://www.std.gov.cn/db/search/dbPage?searchText=&amp;op=%E6%96%B0%E7%96%86&amp;ISSUE_DATE=&amp;sortOrder=asc&amp;pageSize=15&amp;pageNumber=1&amp;_=1554805618710</a></p>
+</blockquote>
+<p>pageSize代表当前页面显示多少，pageNumber代表当前页数,如果要都访问遍历页数即可</p>
+<p>下面直接贴代码了</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#注意网页是动态加载数据</span></span><br><span class="line"><span class="comment">#有些地方没有分类，直接写无</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">import</span> os</span><br><span class="line"><span class="built_in">import</span> os.path</span><br><span class="line"><span class="built_in">import</span> bs4</span><br><span class="line"><span class="built_in">import</span> requests</span><br><span class="line">from bs4 <span class="built_in">import</span> BeautifulSoup</span><br><span class="line"><span class="built_in">import</span> sys</span><br><span class="line"><span class="built_in">import</span> random</span><br><span class="line"><span class="built_in">import</span> re</span><br><span class="line"><span class="built_in">import</span> json</span><br><span class="line"><span class="built_in">import</span> openpyxl</span><br><span class="line"><span class="built_in">import</span> time</span><br><span class="line"><span class="built_in">import</span> random</span><br><span class="line"><span class="attr">searchlist</span> = [<span class="string">"北京"</span>,<span class="string">"天津"</span>,<span class="string">"河北"</span>,<span class="string">"山西"</span>,<span class="string">"内蒙古"</span>,<span class="string">"上海"</span>,<span class="string">"江苏"</span>,<span class="string">"浙江"</span>,<span class="string">"安徽"</span>,<span class="string">"福建"</span>,<span class="string">"江西"</span>,<span class="string">"山东"</span>,</span><br><span class="line">            <span class="string">"辽宁"</span>,<span class="string">"吉林"</span>,<span class="string">"黑龙江"</span>,<span class="string">"河南"</span>,<span class="string">"湖北"</span>,<span class="string">"湖南"</span>,<span class="string">"广东"</span>,<span class="string">"广西"</span>,<span class="string">"海南"</span>,<span class="string">"重庆"</span>,<span class="string">"四川"</span>,<span class="string">"贵州"</span>,<span class="string">"云南"</span>,</span><br><span class="line">            <span class="string">"西藏"</span>,<span class="string">"陕西"</span>,<span class="string">"甘肃"</span>,<span class="string">"青海"</span>,<span class="string">"宁夏"</span>,<span class="string">"新疆"</span>]</span><br><span class="line"></span><br><span class="line"><span class="attr">login_head</span> = &#123;</span><br><span class="line">    'Host': 'www.std.gov.cn',</span><br><span class="line">    'User-Agent': 'Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">10.0</span>; Win64; x64) AppleWebKit/<span class="number">537.36</span> (KHTML, like Gecko) Chrome/<span class="number">73.0</span>.<span class="number">3683.86</span> Safari/<span class="number">537.36</span>'</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="attr">list_path</span> = os.path.join(os.getcwd(),'test.txt')</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attr">filename</span> = os.path.join(os.getcwd(),'test.xlsx')</span><br><span class="line"><span class="attr">wb</span> = openpyxl.load_workbook(filename)</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attr">search_number</span> = <span class="number">400</span> </span><br><span class="line"><span class="attr">sheet_number</span> = <span class="number">1</span></span><br><span class="line">for i <span class="keyword">in</span> searchlist:</span><br><span class="line">    print(i)</span><br><span class="line">    wb.create_sheet(i,<span class="attr">index</span> = sheet_number)</span><br><span class="line">    sheet_number += <span class="number">1</span></span><br><span class="line">    <span class="attr">ws</span> = wb.get_sheet_by_name(i)</span><br><span class="line">    <span class="attr">pagenumber</span> = <span class="number">1</span></span><br><span class="line">    <span class="attr">row</span> = <span class="number">2</span> <span class="comment">#定义行号</span></span><br><span class="line">    <span class="attr">cnt</span> = <span class="number">1</span> <span class="comment">#计数</span></span><br><span class="line">    <span class="attr">flag</span> = True</span><br><span class="line">    while(<span class="attr">flag</span> == True):</span><br><span class="line">        <span class="attr">u_p</span> = <span class="string">"http://www.std.gov.cn/db/search/dbPage?searchText=&amp;op="</span>+i+<span class="string">"&amp;ISSUE_DATE=&amp;sortOrder=asc&amp;pageSize="</span>+str(search_number)+<span class="string">"&amp;pageNumber="</span>+str(pagenumber)+<span class="string">"&amp;_=1554781074367"</span></span><br><span class="line">        <span class="attr">time_check</span> = <span class="number">0</span> </span><br><span class="line">        print(pagenumber)</span><br><span class="line">        while(time_check&lt;<span class="number">100</span>):</span><br><span class="line">            try:</span><br><span class="line">                <span class="attr">response</span> = requests.get(u_p,<span class="attr">headers=login_head,timeout</span> = <span class="number">10</span>)</span><br><span class="line">                break</span><br><span class="line">            except:</span><br><span class="line">                time.sleep(random.randint(<span class="number">0</span>,<span class="number">2</span>)+random.random())</span><br><span class="line">                print(<span class="string">"time_check="</span>,time_check)</span><br><span class="line">                time_check+=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="attr">json_data</span> = json.loads(response.text)</span><br><span class="line">        <span class="attr">rows_list</span> = json_data['rows']</span><br><span class="line">        <span class="attr">total_number</span> = json_data['total']</span><br><span class="line">        <span class="keyword">if</span>(pagenumber*search_number&gt;total_number):</span><br><span class="line">            <span class="comment">#如果超出总数，跳出</span></span><br><span class="line">            <span class="attr">u_p</span> = <span class="string">"http://www.std.gov.cn/db/search/dbPage?searchText=&amp;op="</span>+i+<span class="string">"&amp;ISSUE_DATE=&amp;sortOrder=asc&amp;pageSize="</span>+str(total_number-(pagenumber-<span class="number">1</span>)*search_number)+<span class="string">"&amp;pageNumber="</span>+str(pagenumber)+<span class="string">"&amp;_=1554781074367"</span></span><br><span class="line">            <span class="attr">flag</span> = False</span><br><span class="line">        for z <span class="keyword">in</span> rows_list:</span><br><span class="line">            <span class="comment">#判断日期是否符合</span></span><br><span class="line">            <span class="attr">iss_time</span> = z['ISSUE_DATE']</span><br><span class="line">            <span class="keyword">if</span>(iss_time[<span class="number">0</span>:<span class="number">4</span>]&gt;'<span class="number">2017</span>'):</span><br><span class="line">                cnt+=<span class="number">1</span></span><br><span class="line">                continue</span><br><span class="line">            elif(iss_time[<span class="number">0</span>:<span class="number">4</span>]&lt;'<span class="number">2014</span>'):</span><br><span class="line">                <span class="attr">cnt</span> = <span class="number">1</span></span><br><span class="line">                <span class="attr">flag</span> = False <span class="comment">#如果日期开始小了，跳出while循环</span></span><br><span class="line">                break</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                None</span><br><span class="line">            <span class="comment">#第二列记录序列</span></span><br><span class="line">            ws.cell(<span class="attr">row</span> = row,<span class="attr">column</span> = <span class="number">2</span>).<span class="attr">value</span> = cnt</span><br><span class="line">            <span class="comment">#第三列记录标准号</span></span><br><span class="line">            ws.cell(<span class="attr">row</span> = row,<span class="attr">column</span> = <span class="number">3</span>).<span class="attr">value</span> = z['C_STD_CODE']</span><br><span class="line">            <span class="comment">#第四列记录名字</span></span><br><span class="line">            ws.cell(<span class="attr">row</span> = row,<span class="attr">column</span> = <span class="number">4</span>).<span class="attr">value</span> = z['C_C_NAME']</span><br><span class="line">            <span class="comment">#第五列记录类型,注意错误</span></span><br><span class="line">            try:</span><br><span class="line">                ws.cell(<span class="attr">row</span> = row,<span class="attr">column</span> = <span class="number">5</span>).<span class="attr">value</span> = z['TRADE_CLASSIFIED']</span><br><span class="line">            except:</span><br><span class="line">                ws.cell(<span class="attr">row</span> = row,<span class="attr">column</span> = <span class="number">5</span>).<span class="attr">value</span> = '无'</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                None</span><br><span class="line">            <span class="comment">#第六列记录发行时间</span></span><br><span class="line">            ws.cell(<span class="attr">row</span> = row,<span class="attr">column</span> = <span class="number">6</span>).<span class="attr">value</span> = z['ISSUE_DATE']</span><br><span class="line">            <span class="comment">#第七行记录实施时间</span></span><br><span class="line">            ws.cell(<span class="attr">row</span> = row,<span class="attr">column</span> = <span class="number">7</span>).<span class="attr">value</span> = z['ACT_DATE']</span><br><span class="line">            <span class="comment">#第八行记录地名</span></span><br><span class="line">            ws.cell(<span class="attr">row</span> = row,<span class="attr">column</span> = <span class="number">8</span>).<span class="attr">value</span> = i</span><br><span class="line">            row += <span class="number">1</span></span><br><span class="line">            cnt += <span class="number">1</span></span><br><span class="line">        pagenumber+=<span class="number">1</span></span><br><span class="line">wb.save('aa.xlsx')</span><br><span class="line"></span><br><span class="line"><span class="comment">#for i in rows_list:</span></span><br><span class="line"><span class="comment">#    category_list.add(i['TRADE_CLASSIFIED'])</span></span><br><span class="line"><span class="comment">#print(category_list)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#soup = BeautifulSoup(response.text,"lxml")</span></span><br><span class="line"><span class="comment">#with open(list_path,'w',encoding = 'UTF-8-sig') as f:</span></span><br><span class="line"><span class="comment">#    f.write(response.text)</span></span><br></pre></td></tr></table></figure>
+<p>因为我是要写到xlsx里面去，所以调了一个openpyxl的库</p>
+<h2 id="反爬"><a href="#反爬" class="headerlink" title="反爬"></a>反爬</h2><p>爬了一下发现，一直在中途就报错<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">warning</span> 10060</span><br><span class="line">主机无法访问</span><br></pre></td></tr></table></figure></p>
+<p>自己手动访问又没问题，那就是反爬机制了。<br>解决的方法就是用while加上try去get，一共循环100次，如果访问到了退出循环，没访问到停顿随机的时间，然后重新访问。注意timeout要写，有些时候它不报错，但是就是一直卡在那儿，所以要设置一个时限.<br>具体都写在上面的代码里了</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>这个json的资源有些地方会有空白,比如访问[‘TRADE_CLASSIFIED’]的时候，偶尔一两个会报错，去看的时候发现的确没有这个key，原因是有些行业的分类是无，他就有些不写了，这地方要注意一下。</p>
+<h2 id="完结撒花"><a href="#完结撒花" class="headerlink" title="完结撒花"></a>完结撒花</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/31/沿边排列建筑/" rel="next" title="沿边排列建筑">
+                <i class="fa fa-chevron-left"></i> 沿边排列建筑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjMyMC8xMjg1NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/25_h.png"
+                alt="Hank" />
+            
+              <p class="site-author-name" itemprop="name">Hank</p>
+              <p class="site-description motion-element" itemprop="description">记录学习的过程，关于代码、书籍、人生的感悟。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=536623501&auto=0&height=66"></iframe>
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#python爬取全国标准信息平台"><span class="nav-number">1.</span> <span class="nav-text">python爬取全国标准信息平台</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目标网页"><span class="nav-number">1.1.1.</span> <span class="nav-text">目标网页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决问题"><span class="nav-number">1.1.2.</span> <span class="nav-text">解决问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决动态加载页面"><span class="nav-number">1.2.</span> <span class="nav-text">解决动态加载页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反爬"><span class="nav-number">1.3.</span> <span class="nav-text">反爬</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">1.4.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完结撒花"><span class="nav-number">1.5.</span> <span class="nav-text">完结撒花</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hank</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
